@@ -205,7 +205,7 @@ const Navbar = () => {
       </div>
       <div
         onClick={() => setNavbarActive(!navbarActive)}
-        className="inline-block bg-red-700"
+        className="inline-block"
       >
         <div className={`md:hidden w-[30px] ${navbarActive ? "hidden" : null}`}>
           <MdOutlineKeyboardDoubleArrowRight className="text-4xl" />
