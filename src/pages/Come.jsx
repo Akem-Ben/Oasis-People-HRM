@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 
-function Home() {
+function Come() {
   return (
-    <div className='bg-red-600'>
+    <div className='bg-green-600'>
       <Navbar />
-      <h1 className='ml-[100px]'>Home</h1>
+      <h1 className='ml-[100px]'>Come</h1>
     </div>
   )
 }
 
-export default Home;
+export default Come;
