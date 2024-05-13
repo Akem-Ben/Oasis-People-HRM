@@ -31,7 +31,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-white fixed w-[300px] z-200 px-4 py-4 h-screen">
+      <div className={`${navbarActive ? "block" : "hidden"
+            } md:block fixed w-[300px] z-200 px-4 py-4 h-screen`}>
         <div
           className={`${navbarActive ? "block" : "hidden"
             }  bg-[#FAFAFB] w-[270px] h-full py-8 px-4 top-4 left-4 mb-6 z-200 rounded-xl md:block text-[#16151C]`}
@@ -204,13 +205,13 @@ const Navbar = () => {
       </div>
       <div
         onClick={() => setNavbarActive(!navbarActive)}
-        className="inline-block"
+        className="inline-block bg-red-700"
       >
         <div className={`md:hidden w-[30px] ${navbarActive ? "hidden" : null}`}>
           <MdOutlineKeyboardDoubleArrowRight className="text-4xl" />
         </div>
         <div
-          className={`md:hidden w-[30px] ${navbarActive ? "ml-[265px]" : "ml-0"
+          className={`md:hidden w-[30px] ${navbarActive ? "ml-[290px]" : "ml-0"
             } ${!navbarActive ? "hidden" : null}`}
         >
           <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />
