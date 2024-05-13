@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Come from './pages/Come';
 import Go from './pages/Go';
 import Navbar from './components/Navbar';
+import { ThemeContextProvider } from './contexts/ThemeContext';
 
 
 const routes = createBrowserRouter([
@@ -40,7 +41,9 @@ function App() {
 
   return (
     <>
+    <ThemeContextProvider>
     <RouterProvider router={routes} />
+    </ThemeContextProvider>
     </>
   )
 }
