@@ -2,14 +2,14 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Come from './pages/Come';
 import Go from './pages/Go';
-import Navbar from './components/Navbar';
+import SideBar from './components/SideBar';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <Navbar />
+    element: <SideBar />
   },
   {
     path: '/dashboard',

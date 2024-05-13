@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import SideBar from '../components/SideBar';
 
 function Home() {
   return (
     <div className='bg-red-600'>
-      <Navbar />
+      <SideBar />
       <h1 className='ml-[100px]'>Home</h1>
     </div>
   )
