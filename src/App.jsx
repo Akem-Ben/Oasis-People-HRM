@@ -9,7 +9,7 @@ import { ThemeContextProvider } from './contexts/ThemeContext';
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <SideBar />
+    element: <Home />
   },
   {
     path: '/dashboard',
