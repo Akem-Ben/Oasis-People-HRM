@@ -14,8 +14,8 @@ import { CiLight } from "react-icons/ci";
 import { GoMoon } from "react-icons/go";
 import { useTheme } from "../contexts/ThemeContext";
 
-const Navbar = () => {
-  const [navbarActive, setNavbarActive] = useState(false);
+const SideBar = () => {
+  const [sidebarActive, setSidebarActive] = useState(false);
   const [active, setActive] = useState('');
   const { theme, toggleThemes } = useTheme();
 
@@ -31,10 +31,10 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={`${navbarActive ? "block" : "hidden"
+      <div className={`${sidebarActive ? "block" : "hidden"
             } md:block fixed w-[300px] z-200 px-4 py-4 h-screen`}>
         <div
-          className={`${navbarActive ? "block" : "hidden"
+          className={`${sidebarActive ? "block" : "hidden"
             }  bg-[#FAFAFB] w-[270px] h-full py-8 px-4 top-4 left-4 mb-6 z-200 rounded-xl md:block text-[#16151C]`}
         >
           <div className="flex flex-col">
@@ -204,15 +204,15 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        onClick={() => setNavbarActive(!navbarActive)}
+        onClick={() => setSidebarActive(!sidebarActive)}
         className="inline-block"
       >
-        <div className={`md:hidden w-[30px] ${navbarActive ? "hidden" : null}`}>
+        <div className={`md:hidden w-[30px] ${sidebarActive ? "hidden" : null}`}>
           <MdOutlineKeyboardDoubleArrowRight className="text-4xl" />
         </div>
         <div
-          className={`md:hidden w-[30px] ${navbarActive ? "ml-[290px]" : "ml-0"
-            } ${!navbarActive ? "hidden" : null}`}
+          className={`md:hidden w-[30px] ${sidebarActive ? "ml-[290px]" : "ml-0"
+            } ${!sidebarActive ? "hidden" : null}`}
         >
           <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />
         </div>
@@ -221,4 +221,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default SideBar;

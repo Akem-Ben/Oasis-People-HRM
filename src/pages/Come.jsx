@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import SideBar from '../components/SideBar';
 
 function Come() {
   return (
     <div className='bg-green-600'>
-      <Navbar />
+      <SideBar />
       <h1 className='ml-[100px]'>Come</h1>
     </div>
   )
