@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/homepage/oasis-logo.png";
+import logo from "../assets/sidebar/oasis-logo.png";
 import { MdOutlineDashboard } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
 import { FaUsersViewfinder } from "react-icons/fa6";
@@ -95,7 +95,7 @@ const SideBar = () => {
                         <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
                       )}
                       <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
-                        <GoPeople className="mt-[1px] text-xl" /> All Employess
+                        <GoPeople className="mt-[1px] text-xl" /> All Employees
                       </li>
                     </div>
                   </NavLink>

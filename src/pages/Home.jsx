@@ -7,7 +7,6 @@ function Home() {
     <div className=''>
       <SideBar />
       <NavBar />
-      <h1 className='ml-[100px]'>Home</h1>
     </div>
   )
 }
