@@ -13,10 +13,12 @@ import { NavLink } from "react-router-dom";
 import { CiLight } from "react-icons/ci";
 import { GoMoon } from "react-icons/go";
 import { useTheme } from "../contexts/ThemeContext";
+import profileImg from "../assets/sidebar/profile.jpeg";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const SideBar = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("");
   const { theme, toggleThemes } = useTheme();
 
   const handleTheme = () => {
@@ -26,18 +28,22 @@ const SideBar = () => {
   const logout = () => {
     // localStorage.removeItem("user");
     // localStorage.removeItem("token");
-    return window.location.href = "/";
+    return (window.location.href = "/");
   };
 
   return (
     <>
-      <div className={`${sidebarActive ? "block" : "hidden"
-            } md:block fixed w-[300px] z-200 px-4 py-4 h-screen`}>
+      <div
+        className={`${
+          sidebarActive ? "block" : "hidden"
+        } md:block fixed w-[300px] z-200 px-4 py-2 h-screen`}
+      >
         <div
-          className={`${sidebarActive ? "block" : "hidden"
-            }  bg-[#FAFAFB] w-[270px] h-full py-8 px-4 top-4 left-4 mb-6 z-200 rounded-xl md:block text-[#16151C]`}
+          className={`${
+            sidebarActive ? "block" : "hidden"
+          }  bg-[#FAFAFB] w-[270px] h-full py-3 px-4 top-4 left-4 mb-6 z-200 rounded-xl md:block text-[#16151C]`}
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col text-xs md:text-sm">
             <section className="">
               <div className="flex gap-2">
                 <img
@@ -53,11 +59,11 @@ const SideBar = () => {
             </section>
             <section className="mt-10">
               <nav>
-                <ul className="flex flex-col gap-2">
+                <ul className="flex gap-1 md:gap-1 flex-col">
                   <NavLink
                     to="/dashboard"
                     style={({ isActive }) => {
-                      isActive ? setActive('dashboard') : null;
+                      isActive ? setActive("dashboard") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -67,11 +73,11 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'dashboard' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "dashboard" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
                       <li
-                        className={`flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]`}
+                        className={`flex gap-4 text-l w-full items-center p-[10px] font-lexend hover:text-[#7152F3] hover:cursor-pointer`}
                       >
                         <MdOutlineDashboard className="mt-[1px] text-xl" />{" "}
                         Dashboard
@@ -81,7 +87,7 @@ const SideBar = () => {
                   <NavLink
                     to="/employees"
                     style={({ isActive }) => {
-                      isActive ? setActive('employees') : null;
+                      isActive ? setActive("employees") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -91,10 +97,10 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'employees' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "employees" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
-                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
+                      <li className="flex gap-4 text-l w-full items-center p-[10px] font-lexend hover:text-[#7152F3] hover:cursor-pointer">
                         <GoPeople className="mt-[1px] text-xl" /> All Employees
                       </li>
                     </div>
@@ -102,7 +108,7 @@ const SideBar = () => {
                   <NavLink
                     to="/departments"
                     style={({ isActive }) => {
-                      isActive ? setActive('departments') : null;
+                      isActive ? setActive("departments") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -112,10 +118,10 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'departments' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "departments" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
-                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
                         <FaUsersViewfinder className="mt-[1px] text-xl" /> All
                         Departments
                       </li>
@@ -124,7 +130,7 @@ const SideBar = () => {
                   <NavLink
                     to="/attendance"
                     style={({ isActive }) => {
-                      isActive ? setActive('attendance') : null;
+                      isActive ? setActive("attendance") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -134,10 +140,10 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'attendance' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "attendance" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
-                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
                         <FaRegCalendarCheck className="mt-[1px] text-xl" />{" "}
                         Attendance
                       </li>
@@ -146,7 +152,7 @@ const SideBar = () => {
                   <NavLink
                     to="/leaves"
                     style={({ isActive }) => {
-                      isActive ? setActive('leaves') : null;
+                      isActive ? setActive("leaves") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -156,18 +162,68 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'leaves' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "leaves" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
-                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
                         <FcCalendar className="mt-[1px] text-xl" /> Leaves
+                      </li>
+                    </div>
+                  </NavLink>
+                  <NavLink
+                    to="/notification"
+                    className="block md:block lg:hidden sm:block"
+                    style={({ isActive }) => {
+                      isActive ? setActive("notification") : null;
+                      return {
+                        backgroundColor: isActive ? "#F3F2FB" : "",
+                        color: isActive ? "#7152F3" : "",
+                        borderRadius: "10px",
+                        fontWeight: isActive ? 800 : 100,
+                      };
+                    }}
+                  >
+                    <div className="flex">
+                      {active === "leaves" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
+                      )}
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
+                        <IoNotificationsOutline className="mt-[1px] text-xl" />Notification
+                      </li>
+                    </div>
+                  </NavLink>
+                  <NavLink
+                    to="/profile"
+                    className="block md:block lg:hidden sm:block"
+                    style={({ isActive }) => {
+                      isActive ? setActive("profile") : null;
+                      return {
+                        backgroundColor: isActive ? "#F3F2FB" : "",
+                        color: isActive ? "#7152F3" : "",
+                        borderRadius: "10px",
+                        fontWeight: isActive ? 800 : 100,
+                      };
+                    }}
+                  >
+                    <div className="flex">
+                      {active === "leaves" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
+                      )}
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
+                        <img
+                          src={profileImg}
+                          alt="profile image"
+                          width="20"
+                          className="rounded-lg"
+                        />{" "}
+                        Profile
                       </li>
                     </div>
                   </NavLink>
                   <NavLink
                     to="/settings"
                     style={({ isActive }) => {
-                      isActive ? setActive('settings') : null;
+                      isActive ? setActive("settings") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -177,26 +233,55 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === 'settings' && (
-                        <div className="bg-[#7152F3] inline-block h-[65px] w-1 rounded-lg"></div>
+                      {active === "settings" && (
+                        <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
-                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer p-[20px]">
+                      <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
                         <IoSettingsOutline className="mt-[1px] text-xl" />{" "}
                         Settings
                       </li>
                     </div>
                   </NavLink>
-                  <li className="flex gap-4 text-l font-lexend font-thin hover:text-[#7152F3] hover:cursor-pointer p-[20px]" onClick={() => logout()}>
+                  <li
+                    className="flex gap-4 text-l font-lexend font-thin hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]"
+                    onClick={() => logout()}
+                  >
                     <IoIosLogOut className="mt-[1px] text-xl" /> Signout
                   </li>
                 </ul>
               </nav>
             </section>
-            <section className="bottom-5 fixed w-[230px] h-[60px] rounded-xl bottom-10 flex justify-center items-center">
+            <section className="bottom-5 absolute w-[230px] h-[60px] rounded-xl flex justify-center items-center">
               <div className="w-full h-full rounded-xl">
                 <div className="flex bg-[#F6F6F7] justify-between w-full h-full rounded-xl">
-                  <div onClick={() => handleTheme()} style={{ backgroundColor: `${theme === 'light' ? '#7152F3' : '#F6F6F7'}`, color: `${theme === 'light' ? 'white' : ''}` }} className={`w-[50%] ${theme === 'light' ? 'rounded-xl' : null} rounded-tl-xl rounded-bl-xl flex justify-center gap-4 items-center text-l hover:text-[#7152F3] font-light hover:cursor-pointer`}><CiLight className="text-xl" /> Light</div>
-                  <div onClick={() => handleTheme()} style={{ backgroundColor: `${theme === 'dark' ? '#7152F3' : '#F6F6F7'}`, color: `${theme === 'dark' ? 'white' : ''}` }} className={`w-[50%] ${theme === 'dark' ? 'rounded-xl' : null} flex justify-center rounded-tr-xl rounded-br-xl gap-4 items-center text-l hover:text-[#7152F3] font-light hover:cursor-pointer`}><GoMoon className="text-xl" /> Dark</div>
+                  <div
+                    onClick={() => handleTheme()}
+                    style={{
+                      backgroundColor: `${
+                        theme === "light" ? "#7152F3" : "#F6F6F7"
+                      }`,
+                      color: `${theme === "light" ? "white" : ""}`,
+                    }}
+                    className={`w-[50%] ${
+                      theme === "light" ? "rounded-xl" : null
+                    } rounded-tl-xl rounded-bl-xl flex justify-center gap-4 items-center text-l hover:text-[#7152F3] font-light hover:cursor-pointer`}
+                  >
+                    <CiLight className="text-xl" /> Light
+                  </div>
+                  <div
+                    onClick={() => handleTheme()}
+                    style={{
+                      backgroundColor: `${
+                        theme === "dark" ? "#7152F3" : "#F6F6F7"
+                      }`,
+                      color: `${theme === "dark" ? "white" : ""}`,
+                    }}
+                    className={`w-[50%] ${
+                      theme === "dark" ? "rounded-xl" : null
+                    } flex justify-center rounded-tr-xl rounded-br-xl gap-4 items-center text-l hover:text-[#7152F3] font-light hover:cursor-pointer`}
+                  >
+                    <GoMoon className="text-xl" /> Dark
+                  </div>
                 </div>
               </div>
             </section>
@@ -207,12 +292,15 @@ const SideBar = () => {
         onClick={() => setSidebarActive(!sidebarActive)}
         className="inline-block"
       >
-        <div className={`md:hidden w-[30px] ${sidebarActive ? "hidden" : null}`}>
+        <div
+          className={`md:hidden w-[30px] ${sidebarActive ? "hidden" : null}`}
+        >
           <MdOutlineKeyboardDoubleArrowRight className="text-4xl" />
         </div>
         <div
-          className={`md:hidden w-[30px] ${sidebarActive ? "ml-[290px]" : "ml-0"
-            } ${!sidebarActive ? "hidden" : null}`}
+          className={`md:hidden w-[30px] ${
+            sidebarActive ? "ml-[290px]" : "ml-0"
+          } ${!sidebarActive ? "hidden" : null}`}
         >
           <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />
         </div>
