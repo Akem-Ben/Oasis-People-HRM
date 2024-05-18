@@ -74,12 +74,12 @@ function Home() {
         </div>
       </section>
       <section className='w-[40%] flex items-center justify-center'>
-        <div className='rounded-xl border-2 border-gray-500 w-[70%] h-[80%] flex flex-col justify-center items-center'>
-          <div>
-            <div>
-
-            </div>
-          </div>
+        <div className='rounded-xl bg-red-600 border-2 border-gray-500 w-[80%] h-[80%] flex flex-col justify-center items-center'>
+             <div className='flex w-[80%] gap-2 items-center justify-center'>
+              <img src={oasisLogo} alt="Oasis Logo" width="40" className='rounded-xl' />{" "}
+              <div className='font-bold text-2xl'>Oasis People HRM</div> 
+             </div>
+             <div></div>
       <form
       className="mt-10 w-40 p-3"
         onSubmit={loginFormik.handleSubmit}
