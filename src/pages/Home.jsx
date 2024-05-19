@@ -1,14 +1,17 @@
-import React from 'react';
-import SideBar from '../components/SideBar';
-import NavBar from '../components/Navbar';
+import React from "react";
+import { Button } from "../components/Button";
+import Layout from "../components/Layout";
+import { Table } from "../components/Table";
 
 function Home() {
   return (
-    <div className=''>
-      <SideBar />
-      <NavBar />
-    </div>
-  )
+    <Layout>
+      <div>
+        hey
+       
+      </div>
+    </Layout>
+  );
 }
 
 export default Home;

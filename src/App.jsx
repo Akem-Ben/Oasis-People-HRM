@@ -4,6 +4,8 @@ import Come from './pages/Come';
 import Go from './pages/Go';
 import SideBar from './components/SideBar';
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import Employee from './pages/employees';
+import Attendance from './pages/attendance';
 
 
 const routes = createBrowserRouter([
@@ -17,7 +19,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/employees',
-    element: <Come />
+    element: <Employee/>
   },
   {
     path: '/departments',
@@ -25,7 +27,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/attendance',
-    element: <Home />
+    element: <Attendance />
   },
   {
     path: '/leaves',
