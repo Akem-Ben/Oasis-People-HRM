@@ -1,8 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from './pages/Home';
-import Come from './pages/Come';
-import Go from './pages/Go';
-import SideBar from './components/SideBar';
+import Home from './pages/Home/Home';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import Employee from './pages/employees';
 import Attendance from './pages/attendance';
