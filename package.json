@@ -1,4 +1,4 @@
-{
+ging{
   "name": "oasis-people-hrm",
   "private": true,
   "version": "0.0.0",
@@ -10,20 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "clsx": "^2.1.1",
-=======
     "formik": "^2.4.6",
->>>>>>> Staging
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
-<<<<<<< HEAD
     "react-use": "^17.5.0"
-=======
     "yup": "^1.4.0"
->>>>>>> Staging
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
