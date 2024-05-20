@@ -36,7 +36,7 @@ const SideBar = () => {
       <div
         className={`${
           sidebarActive ? "block" : "hidden"
-        } md:block fixed w-[300px] z-200 px-4 py-2 h-screen`}
+        } md:block fixed w-[280px] z-200 px-4 py-2 lg:px-4 sm:px-0 md:px-0 h-screen bg-white`}
       >
         <div
           className={`${
@@ -299,7 +299,7 @@ const SideBar = () => {
         </div>
         <div
           className={`md:hidden w-[30px] ${
-            sidebarActive ? "ml-[290px]" : "ml-0"
+            sidebarActive ? "ml-[300px]" : "ml-0"
           } ${!sidebarActive ? "hidden" : null}`}
         >
           <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />

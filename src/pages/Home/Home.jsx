@@ -4,10 +4,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import oasisLogo from '../../assets/homepage/oasis-logo.png';
 import { MdOutlineWavingHand } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
  const initialFormlikLoginValues = {
     loginKey: "",
@@ -33,31 +35,31 @@ function Home() {
         loginForm.append("loginKey", values.loginKey);
         loginForm.append("password", values.password);
 
-        const data = await loginUser(loginForm);
+        // const data = await loginUser(loginForm);
 
-        if (data.status === 401) {
-          localStorage.setItem("loginKey", values.loginKey);
-          setLoading(false);
-          return setCheckVerification(true);
-        }
+        // if (data.status === 401) {
+        //   localStorage.setItem("loginKey", values.loginKey);
+        //   setLoading(false);
+        //   return setCheckVerification(true);
+        // }
 
-        if (data.status !== 200) {
-          setLoading(false);
-          return showErrorToast(data.data.message);
-        }
+        // if (data.status !== 200) {
+        //   setLoading(false);
+        //   return showErrorToast(data.data.message);
+        // }
 
-        showSuccessToast(data.data.message);
+        // showSuccessToast(data.data.message);
 
-        localStorage.setItem("token", data.data.token);
+        // localStorage.setItem("token", data.data.token);
 
-        localStorage.setItem("user", JSON.stringify(data.data.user));
+        // localStorage.setItem("user", JSON.stringify(data.data.user));
 
-        values.loginKey = "";
-        values.password = "";
+        // values.loginKey = "";
+        // values.password = "";
 
-        setLoading(false);
+        // setLoading(false);
 
-        return navigate("/");
+        return navigate("/dashboard");
       } catch (error) {
         console.log(error);
       } finally {
