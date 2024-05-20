@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 const routes = createBrowserRouter([
@@ -10,7 +11,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Home />
+    element: <Dashboard />
   },
 ])
 

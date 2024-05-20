@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="lg:ml-[290px] bg-white md:ml-[290px] sm:ml-0 p-1 flex flex-col">
+      <div className="lg:ml-[290px] bg-white md:ml-[290px] sm:ml-0 p-1 px-4 flex flex-col">
         <div className="flex justify-between sm:justify-around">
           <section className="w-[50%] md:w-[30%] h-[10%]">
             <div className="flex gap-2 font-lexend font-bold">
