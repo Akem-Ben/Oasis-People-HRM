@@ -1,20 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "os-purple": "#7152F3",
+      },
+    },
     fontFamily: {
-      lexend: ['Lexend Deca', 'sans-serif'],
+      lexend: ["Lexend Deca", "sans-serif"],
     },
     screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-    }
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+    },
   },
   plugins: [],
-}
-
+};

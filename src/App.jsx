@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import Employee from './pages/employees';
+import Attendance from './pages/attendance';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 
@@ -12,6 +14,26 @@ const routes = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard />
+  },
+  {
+    path: '/employees',
+    element: <Employee/>
+  },
+  {
+    path: '/departments',
+    element: <Go />
+  },
+  {
+    path: '/attendance',
+    element: <Attendance />
+  },
+  {
+    path: '/leaves',
+    element: <Come />
+  },
+  {
+    path: '/settings',
+    element: <Go />
   },
 ])
 
