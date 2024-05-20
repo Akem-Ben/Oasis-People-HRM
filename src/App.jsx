@@ -20,20 +20,8 @@ const routes = createBrowserRouter([
     element: <Employee/>
   },
   {
-    path: '/departments',
-    element: <Go />
-  },
-  {
     path: '/attendance',
     element: <Attendance />
-  },
-  {
-    path: '/leaves',
-    element: <Come />
-  },
-  {
-    path: '/settings',
-    element: <Go />
   },
 ])
 
