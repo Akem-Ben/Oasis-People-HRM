@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home'; import EmployeePage from "./pages/EmployeePage.jsx";
-import EmployeeProfile from "./components/EmployeeProfile.jsx";
+import EmployeeProfile from "./components/EmployeeProfile.jsx"; import NewEmployeePage
+  from "./pages/NewEmployeePage.jsx";
 import Dashboard from "./pages/DashboardPage.jsx";
 import { ThemeContextProvider } from './contexts/ThemeContext';
 
@@ -24,6 +25,10 @@ const routes = createBrowserRouter([
           }
         ]
       },
+      {
+        path: "/add-employee",
+        element: <NewEmployeePage />
+      }
     ],
   }
 ])
