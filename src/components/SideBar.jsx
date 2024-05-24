@@ -36,7 +36,7 @@ const SideBar = () => {
       <div
         className={`${
           sidebarActive ? "block" : "hidden"
-        } md:block fixed w-[300px] z-200 px-4 py-2 h-screen`}
+        } md:block fixed w-[280px] z-200 px-4 py-2 lg:px-4 sm:px-0 md:px-0 h-screen bg-white`}
       >
         <div
           className={`${
@@ -87,7 +87,7 @@ const SideBar = () => {
                   <NavLink
                     to="/employees"
                     style={({ isActive }) => {
-                      isActive ? setActive("employees") : null;
+                      isActive ? setActive("Employees") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -97,7 +97,7 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === "employees" && (
+                      {active === "Employees" && (
                         <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
                       <li className="flex gap-4 text-l w-full items-center p-[10px] font-lexend hover:text-[#7152F3] hover:cursor-pointer">
@@ -130,7 +130,7 @@ const SideBar = () => {
                   <NavLink
                     to="/attendance"
                     style={({ isActive }) => {
-                      isActive ? setActive("attendance") : null;
+                      isActive ? setActive("Attendance") : null;
                       return {
                         backgroundColor: isActive ? "#F3F2FB" : "",
                         color: isActive ? "#7152F3" : "",
@@ -140,7 +140,7 @@ const SideBar = () => {
                     }}
                   >
                     <div className="flex">
-                      {active === "attendance" && (
+                      {active === "Attendance" && (
                         <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
                       <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
@@ -299,7 +299,7 @@ const SideBar = () => {
         </div>
         <div
           className={`md:hidden w-[30px] ${
-            sidebarActive ? "ml-[290px]" : "ml-0"
+            sidebarActive ? "ml-[300px]" : "ml-0"
           } ${!sidebarActive ? "hidden" : null}`}
         >
           <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />
