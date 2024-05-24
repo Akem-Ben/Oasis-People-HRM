@@ -7,13 +7,9 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import Chart from "../../components/DashBoard/Chart";
 import DashboardTable from "../../components/DashBoard/DashboardTable";
 
-function Dashboard() {
+function DashboardPage() {
   return (
     <div className="pr-4">
-      <section className="">
-        <SideBar />
-        <NavBar />
-      </section>
       <section className="px-6 py-2 lg:ml-[290px] flex flex-wrap gap-10 md:ml-[290px] sm:ml-0">
         <DashboardCard
           titleImg={IoIosPeople}
@@ -46,4 +42,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardPage;

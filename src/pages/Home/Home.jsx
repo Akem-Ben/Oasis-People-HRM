@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import oasisPhoto from "../../assets/homepage/Oasis.jpeg";
 import { useFormik } from "formik";
 import * as Yup from "yup";

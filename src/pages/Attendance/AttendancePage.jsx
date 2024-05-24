@@ -1,6 +1,4 @@
-import React from "react";
 import Layout from "../../components/Layout";
-import { Button } from "../../components/Button";
 import { Table } from "../../components/Table";
 import SearchInput from "../../components/SearchInput";
 

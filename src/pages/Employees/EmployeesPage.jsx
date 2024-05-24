@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../../components/Layout";
 import { Button } from "../../components/Button";
 import { Table } from "../../components/Table";
@@ -6,6 +5,7 @@ import SearchInput from "../../components/SearchInput";
 
 const Employee = () => {
   return (
+
     <Layout>
       <section className="border border-solid border-[#A2A1A833] rounded-[10px] p-5">
         <div className="flex items-center justify-between mb-6">

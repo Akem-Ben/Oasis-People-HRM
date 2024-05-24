@@ -1,32 +1,36 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from './pages/Home/Home';
+import Root from './pages/Root.jsx';
+import Home from './pages/Home/Home.jsx';
+import DashboardPage from './pages/Dashboard/DashboardPage.jsx'; import EmployeesPage
+  from "./pages/Employees/EmployeesPage.jsx"; import AttendancePage from "./pages/Attendance/AttendancePage.jsx";
 import { ThemeContextProvider } from './contexts/ThemeContext';
-import Employee from './pages/employees';
-import Attendance from './pages/attendance';
-import Dashboard from './pages/Dashboard/Dashboard';
+
 
 
 const routes = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />
+    path: '/signin', element: <Home/>
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />
-  },
-  {
-    path: '/employees',
-    element: <Employee/>
-  },
-  {
-    path: '/attendance',
-    element: <Attendance />
+    path: '/', element: <Root />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardPage />
+      },
+      {
+        path: '/employees',
+        element: <EmployeesPage />
+      },
+      {
+        path: '/attendance',
+        element: <AttendancePage />
+      },
+    ]
   },
 ])
 
 function App() {
-
   return (
     <>
     <ThemeContextProvider>
