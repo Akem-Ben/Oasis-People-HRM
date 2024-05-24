@@ -9,6 +9,7 @@ export default {
     },
     fontFamily: {
       lexend: ["Lexend Deca", "sans-serif"],
+      poppins: ['Poppins', 'sans-serif']
     },
     screens: {
       sm: "640px",
