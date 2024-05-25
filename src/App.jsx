@@ -6,6 +6,7 @@ import DashboardPage from './pages/Dashboard/DashboardPage.jsx'; import Employee
   from "./components/EmployeeProfile/EmployeeProfile.jsx"; import NewEmployeePage
   from "./pages/Employee/NewEmployeePage.jsx";
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import MockAPITest from "./components/MockAPITest.jsx";
 
 
 
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
       {
         path: "/add-employee",
         element: <NewEmployeePage />
+      },
+      {
+        path: "/mock-api",
+        element: <MockAPITest />
       }
     ]
   },
