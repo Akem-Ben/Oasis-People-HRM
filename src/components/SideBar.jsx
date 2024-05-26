@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/sidebar/oasis-logo.png";
 import { MdOutlineDashboard } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
@@ -9,27 +9,37 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CiLight } from "react-icons/ci";
 import { GoMoon } from "react-icons/go";
 import { useTheme } from "../contexts/ThemeContext";
 import profileImg from "../assets/sidebar/profile.jpeg";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { showSuccessToast } from "../utilities/toastifySetup";
 
 const SideBar = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
   const [active, setActive] = useState("");
   const { theme, toggleThemes } = useTheme();
+  const [user, setUser] = useState({});
+  const navigate = useNavigate()
 
   const handleTheme = () => {
     toggleThemes();
   };
 
   const logout = () => {
-    // localStorage.removeItem("user");
-    // localStorage.removeItem("token");
-    return (window.location.href = "/");
+    showSuccessToast(`Goodbye ${user.firstName} ${user.lastName}`)
+    localStorage.clear();
+    navigate("/signin")
+
+    // return (window.location.href = "/signin");
   };
+
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("hr"));
+    setUser(loggedInUser);
+  },[])
 
   return (
     <>

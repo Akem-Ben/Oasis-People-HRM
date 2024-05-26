@@ -6,7 +6,6 @@ import SearchInput from "../../components/SearchInput";
 import { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Employee = () => {
@@ -30,26 +29,9 @@ const Employee = () => {
 
   const navigate = useNavigate();
 
-  const allEmployees = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5173/api/user/employees"
-      );
-
-      return setEmployees(response.data.results);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const goToEmployeeProfile = (id) => {
     return navigate(`/employee/${id}`)
   }
-
-  useEffect(() => {
-    allEmployees();
-  }, []);
 
   return (
     <Layout>
@@ -67,7 +49,7 @@ const Employee = () => {
             </Button>
           </div>
         </div>
-        <Table
+        {/* <Table
           showActionName={true}
           data={employees}
           columns={[
@@ -132,7 +114,7 @@ const Employee = () => {
               </div>
             </div>
           }
-        />
+        /> */}
         <TableSimple employeesData={employees}/>
       </section>
     </Layout>

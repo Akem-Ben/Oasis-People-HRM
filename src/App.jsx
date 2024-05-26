@@ -13,7 +13,6 @@ import AttendancePage from "./pages/Attendance/AttendancePage.jsx";
 import EmployeePage from "./pages/Employee/EmployeePage.jsx";  
 import ErrorPage from "./pages/ErrorDefaultPage.jsx";
 import EditEmployeePage from "./pages/Employee/EditEmployeePage.jsx";
-import { MockAPITest } from "./components/MockAPITest.jsx";
 
 
 const routes = createBrowserRouter([

@@ -5,7 +5,7 @@ import DashboardCard from "../../components/DashBoard/Card";
 import { IoIosPeople } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import Chart from "../../components/DashBoard/Chart";
-import DashboardTable from "../../components/DashBoard/DashboardTable";
+import {DashboardTable} from "../../components/DashBoard/DashboardTable";
 import { getCurrentDate } from "../../utilities/helpers";
 import {allEmployees} from '../../mocks/handlers';
 
