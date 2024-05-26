@@ -1,17 +1,20 @@
 import {Outlet} from "react-router-dom";
 import Sidebar from "../components/SideBar.jsx";
 import Navbar from "../components/Navbar.jsx";
+import EmployeesContextProvider from "../contexts/EmployeesContext.jsx";
 
 function Root() {
   return (
-    <div className=''>
-      <Sidebar />
-      <Navbar />
-      {/* all the other HR features */}
-      <div>
-        <Outlet />
+    <EmployeesContextProvider>
+      <div className=''>
+        <Sidebar/>
+        <Navbar/>
+        {/* all the other HR features */}
+        <div>
+          <Outlet/>
+        </div>
       </div>
-    </div>
+    </EmployeesContextProvider>
   )
 }
 
