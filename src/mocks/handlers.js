@@ -1,3 +1,4 @@
+// import jwt from 'jsonwebtoken';
 import { http, HttpResponse } from "msw";
 
 // A Map of existing Employees kept in memory.
@@ -184,6 +185,18 @@ const allEmployees = {
   ]
 };
 
+const hr = {
+  firstName: 'Raymond',
+  lastName: 'Downey',
+  loginKey: 'hr@hrm.com',
+  password: 'raymond1234',
+  designation: 'HR Manager',
+}
+
+const isAuthenticated = async (request) => {
+  return request.password === hr.password && request.loginKey === hr.loginKey;
+};
+
 export const handlers = [
   http.get('/api/posts', () => {
     return HttpResponse.json({
@@ -202,5 +215,23 @@ export const handlers = [
         {}
       ]
     })
+  }),
+
+  http.post('/api/hr/login', async ({request}) => {
+    const newtext = await request.json()
+    const authenticated = await isAuthenticated(newtext);
+
+    if (authenticated) {
+      return HttpResponse.json({
+          status: 200,
+          message: 'login succcessfull',
+          hr
+    });
+    } else {
+      return HttpResponse.json({
+          status: 401,
+          message: 'check email and password and try again'
+    });
+    }
   })
 ]

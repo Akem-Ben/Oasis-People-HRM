@@ -3,15 +3,24 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import profileImg from "../assets/navbar/profile.jpeg";
 import { IoIosArrowUp } from "react-icons/io";
-import { useState } from "react";
-// import { IoIosArrowUp } from "react-icons/io";
-{
-  /* <IoIosArrowUp /> */
-}
+import { useState, useEffect } from "react";
+import { getCurrentGreeting } from "../utilities/helpers";
 
 const NavBar = () => {
   const [searchItem, setSearchItem] = useState("");
   const [profile, setProfile] = useState(false);
+  const [hr, setHr] = useState({});
+
+  const greeting = getCurrentGreeting();
+
+  useEffect(() => {
+    const currentHr = localStorage.getItem("hr");
+    if (currentHr) {
+      setHr(JSON.parse(currentHr));
+    } else {
+      setHr({});
+    }
+  }, []);
 
   return (
     <>
@@ -19,10 +28,10 @@ const NavBar = () => {
         <div className="flex justify-between sm:justify-around">
           <section className="w-[50%] md:w-[30%] h-[10%]">
             <div className="flex gap-2 font-lexend font-bold">
-              Hello Robert{" "}
+              Hello {hr.firstName}{" "}
               <MdOutlineWavingHand className="mt-1 text-[#A86232]" />
             </div>
-            <div className="text-sm font-thin">Good Morning</div>
+            <div className="text-sm font-thin">{greeting}</div>
           </section>
           <section className="flex w-[80%] md:w-[40%] lg:w-[100%] gap-4 justify-normal md:justify-normal sm:justify-normal lg:justify-end">
             <div className="justify-center items-center w-[60%] md:w-[100%] sm:w-[100%] lg:w-[50%]">
@@ -45,8 +54,10 @@ const NavBar = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-lexend font-bold">Robert Allen</span>{" "}
-                  <span className="text-sm font-thin">HR Manager</span>
+                  <span className="font-lexend font-bold">
+                    {hr.firstName} {hr.lastName}
+                  </span>{" "}
+                  <span className="text-sm font-thin">{hr.designation}</span>
                 </div>
               </div>
               <div className="flex justify-center items-center hover:cursor-pointer">

@@ -7,8 +7,8 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 function DashboardChart() {
 
 const labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-const data1 = [12, 19, 3, 5, 2, 3, 7, 10, 15, 20, 30, 25];
-const data2 = [10, 17, 2, 4, 1, 2, 6, 9, 12, 18, 27, 22];
+const data1 = [12, 19, 3, 5, 2, ]
+const data2 = [10, 17, 2, 4, 1,]
 
 const chartData = {
   labels: labels,
