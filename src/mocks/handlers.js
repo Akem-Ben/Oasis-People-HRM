@@ -288,4 +288,15 @@ export const handlers = [
       });
     }
   }),
-];
+
+  http.get('/api/user/employees/:id', ({params}) => {
+    const { id } = params;
+    const userArray = allEmployees.results.filter((item) => item.id == id);
+    if (userArray.length > 0) {
+      return HttpResponse.json(userArray[0]);
+    } else {
+      //
+    }
+
+  })
+]

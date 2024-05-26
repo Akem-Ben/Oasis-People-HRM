@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import EmployeeProfile from "../../components/EmployeeProfile/EmployeeProfile.jsx";
 import { SlBriefcase } from "react-icons/sl";
 import { HiOutlineEnvelope } from "react-icons/hi2"; import { PiPencilSimpleLineLight } from "react-icons/pi";
@@ -7,6 +8,8 @@ import { LuCalendarCheck } from "react-icons/lu"; import { IoNewspaperOutline } 
 import { LiaClipboardCheckSolid } from "react-icons/lia"; import { Link } from "react-router-dom";
 
 export default function EmployeePage() {
+  const employeeData = useLoaderData();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const showMenu = () => {
@@ -23,6 +26,7 @@ export default function EmployeePage() {
       <div className="mx-1 mt-7 md:max-w-screen-lg md:ml-72 md:mr-5">
         <div className="border rounded-lg border-gray-300">
           {/* Employee Names + Edit Button */}
+
           <div>
             {/* Employee Profile */}
             <div className="md:flex md:justify-between md:items-center">
@@ -34,14 +38,14 @@ export default function EmployeePage() {
                 </div>
                 {/* Employee Email-Title */}
                 <div className="font-poppins *:pb-2">
-                  <h1 className="text-xl font-semibold text-gray-900">Brooklyn Simmons</h1>
+                  <h1 className="text-xl font-semibold text-gray-900">{`${employeeData.firstName} ${employeeData.lastName}`}</h1>
                   <div className="flex space-x-2 items-center">
                     <SlBriefcase className="text-gray-900 text-xl"/>
-                    <p className="font-medium text-sm text-gray-900">Project Manager</p>
+                    <p className="font-medium text-sm text-gray-900">{employeeData.profile[0].designation}</p>
                   </div>
                   <div className="flex space-x-2 items-center">
                     <HiOutlineEnvelope className="text-gray-800 text-xl"/>
-                    <p className="font-medium text-sm text-gray-800">brooklyn.s@example.com</p>
+                    <p className="font-medium text-sm text-gray-800">{employeeData.profile[0].workEmail}</p>
                   </div>
                 </div>
               </div>
@@ -109,7 +113,7 @@ export default function EmployeePage() {
 
             {/* Accompanying Element Details Default to Children later */}
             <div className="mx-4">
-              <EmployeeProfile/>
+              <EmployeeProfile employeeDetails={employeeData}/>
             </div>
           </div>
         </div>
