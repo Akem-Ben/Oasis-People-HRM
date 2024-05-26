@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoMdPerson } from "react-icons/io"; import { SlBriefcase } from "react-icons/sl";
 import { IoNewspaperOutline } from "react-icons/io5"; import { MdLockOutline } from "react-icons/md";
 
-function NavigationTabs(){
+function NavigationTabs({ employeeDetails }){
   const [activeTab, setActiveTab] = useState(1);
 
   const handleChangeTab = (newActiveTab) => {
@@ -56,54 +56,54 @@ function NavigationTabs(){
           <div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">First Name</h3>
-              <p className="text-sm font-lexend">Brooklyn</p>
+              <p className="text-sm font-lexend">{employeeDetails.firstName}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Mobile Number</h3>
-              <p className="text-sm font-lexend">(707) 555-0122</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].mobileNumber}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Date of Birth</h3>
-              <p className="text-sm font-lexend">July, 14, 1995</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].birthDate}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Gender</h3>
-              <p className="text-sm font-lexend">Female</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].gender}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Address</h3>
-              <p className="text-sm font-lexend">2464 Royal Ln. Mesa, New Jersey</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].homeAddress}</p>
             </div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">State</h3>
-              <p className="text-sm font-lexend">United State</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Country</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].officeLocation}</p>
             </div>
           </div>
           {/* Personal Information Grid Two Side */}
           <div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Last Name</h3>
-              <p className="text-sm font-lexend">Simmons</p>
+              <p className="text-sm font-lexend">{employeeDetails.lastName}</p>
             </div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">Email Address</h3>
-              <p className="text-sm font-lexend">brooklyn.s@example.com</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Personal Email Address</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].email}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Martial Status</h3>
-              <p className="text-sm font-lexend">Married</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].maritalStatus}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Nationality</h3>
-              <p className="text-sm font-lexend">America</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].nationality}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">City</h3>
-              <p className="text-sm font-lexend">California</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].city}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Zip Code</h3>
-              <p className="text-sm font-lexend">35624</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].zipCode}</p>
             </div>
           </div>
         </div>
@@ -112,42 +112,46 @@ function NavigationTabs(){
           <div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Employee ID</h3>
-              <p className="text-sm font-lexend">879912390</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].employeeId}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Employee Type</h3>
-              <p className="text-sm font-lexend">Office</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].employeeType}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Department</h3>
-              <p className="text-sm font-lexend">Project Manager</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].department}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Working Days</h3>
-              <p className="text-sm font-lexend">5 Days</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].workingDays}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Office Location</h3>
-              <p className="text-sm font-lexend">2464 Royal Ln. Mesa, New Jersey</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].officeLocation}</p>
             </div>
           </div>
           {/* Professional Information Grid Two Side */}
           <div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">User ame</h3>
-              <p className="text-sm font-lexend">brooklyn_simmons</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">User Name</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].username}</p>
             </div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">Email Address</h3>
-              <p className="text-sm font-lexend">brooklyn.s@example.com</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Bank Branch</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].bankBranch}</p>
             </div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">Designation</h3>
-              <p className="text-sm font-lexend">Project Manager</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Bank Account Name</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].accountName}</p>
+            </div>
+            <div className="pb-4">
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Bank Account Number</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].bankAccountNumber}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Joining Date</h3>
-              <p className="text-sm font-lexend">July 10, 2022</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].hireDate}</p>
             </div>
           </div>
         </div>
@@ -172,23 +176,23 @@ function NavigationTabs(){
         <div className={`${activeTab === 4 ? 'block' : 'hidden'} py-4 grid grid-cols-2 gap-x-8`}>
           <div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">Email Address</h3>
-              <p className="text-sm font-lexend">brooklyn@example.com</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Slack ID</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].socialAccounts.slackId}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Skype ID</h3>
-              <p className="text-sm font-lexend">brooklyn_simmons</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].socialAccounts.skypeId}</p>
             </div>
           </div>
           {/* Account Access Grid Two Side */}
           <div>
             <div className="pb-4">
-              <h3 className="font-lexend text-xs text-gray-400 pb-1">Slack ID</h3>
-              <p className="text-sm font-lexend">brooklyn_simmons</p>
+              <h3 className="font-lexend text-xs text-gray-400 pb-1">Twitter ID</h3>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].socialAccounts.twitterId}</p>
             </div>
             <div className="pb-4">
               <h3 className="font-lexend text-xs text-gray-400 pb-1">Github ID</h3>
-              <p className="text-sm font-lexend">brooklyn_simmons</p>
+              <p className="text-sm font-lexend">{employeeDetails.profile[0].socialAccounts.githubId}</p>
             </div>
           </div>
         </div>
