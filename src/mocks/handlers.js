@@ -186,21 +186,21 @@ const allEmployees = {
 
 export const handlers = [
   http.get('/api/posts', () => {
-    return HttpResponse.json({
-      data: 'Captured a "GET /posts" request',
-    })
+    return HttpResponse.json({ user: 'Captured a "GET /posts" request' })
   }),
-  http.get('/api/user/employees', () => {
 
+  http.get('/api/user/employees', () => {
     return HttpResponse.json(allEmployees);
   }),
-  http.get('/api/user/attendance', () => {
-    return HttpResponse.json({
-      count: 3,
-      createdAt: Date.now(),
-      results: [
-        {}
-      ]
-    })
+
+  http.get('/api/user/employees/:id', ({params}) => {
+    const { id } = params;
+    const userArray = allEmployees.results.filter((item) => item.id == id);
+    if (userArray.length > 0) {
+      return HttpResponse.json(userArray[0]);
+    } else {
+      //
+    }
+
   })
 ]
