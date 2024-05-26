@@ -58,7 +58,6 @@ export function Table({
                   }`}
                 >
                   <tr className="[&>th:nth-child(2)]:pl-0">
-                  
                     {columns.map((col) => {
                       const view = data[0] && col.view(data[0], 0);
                       const isAnObject =
@@ -100,7 +99,7 @@ export function Table({
                       className={clsx(
                         "px-5",
                         "bg-white [&>td:nth-child(2)]:pl-0",
-                        "text-[14px] font-normal",
+                        "text-[14px] font-normal hover:cursor-pointer transition-transform duration-100 hover:scale-105 hover:shadow-lg hover:ring-1 hover:ring-[#7152F3]",
                         noDivider
                           ? ""
                           : "border-b last:border-b-0 border-zp-line/30",
@@ -306,8 +305,7 @@ const Paginator = ({
   const btnNextClick = () => setPage?.(page + 1);
   const classes = {
     paginator: "flex items-center text-sm",
-    btnClass:
-      "h-9 min-w-[2.25rem] focus:outline-none disabled:text-grey-100",
+    btnClass: "h-9 min-w-[2.25rem] focus:outline-none disabled:text-grey-100",
     btnNext: "inline-flex items-center justify-center",
     btnPrev: "inline-flex items-center justify-center",
     item: " h-9 min-w-[2.25rem] px-3 py-1 cursor-pointer text-gray-100",

@@ -10,3 +10,10 @@ export const getCurrentGreeting = () => {
       return "Good Evening";
     }
   };
+
+  export const getCurrentDate = () => {
+    const currentTime = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = currentTime.toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
