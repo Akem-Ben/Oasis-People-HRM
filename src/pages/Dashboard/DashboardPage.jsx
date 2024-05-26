@@ -5,7 +5,9 @@ import DashboardCard from "../../components/DashBoard/Card";
 import { IoIosPeople } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import Chart from "../../components/DashBoard/Chart";
-import DashboardTable from "../../components/DashBoard/DashboardTable";
+import {DashboardTable} from "../../components/DashBoard/DashboardTable";
+import { getCurrentDate } from "../../utilities/helpers";
+import {allEmployees} from '../../mocks/handlers';
 
 function DashboardPage() {
   return (
@@ -14,7 +16,7 @@ function DashboardPage() {
         <DashboardCard
           titleImg={IoIosPeople}
           title="Total Employees"
-          data="560"
+          data={allEmployees.results.length}
           figureImg={FaRegCalendarCheck}
           percentage="12%"
           figBg="bg-[#EAF9F3]"
@@ -29,7 +31,7 @@ function DashboardPage() {
           percentage="8%"
           figBg="bg-[#FEEFF0]"
           figTxtCol="text-[#F45B69]"
-          date="January 7, 2024"
+          date={getCurrentDate()}
         />
       </section>
       <section className="lg:ml-[290px] px-6 py-2 flex md:ml-[290px] sm:ml-0">

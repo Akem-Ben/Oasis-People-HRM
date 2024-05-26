@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import oasisLogo from "../../assets/homepage/oasis-logo.png";
 import { MdOutlineWavingHand } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {showErrorToast, showSuccessToast} from '../../utilities/toastifySetup';
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -28,34 +30,32 @@ function Home() {
       try {
         setLoading(true);
 
-        const loginForm = new FormData();
+        const body = {
+          loginKey: values.loginKey,
+          password: values.password,
+        };
 
-        loginForm.append("loginKey", values.loginKey);
-        loginForm.append("password", values.password);
+        const response = await axios.post("http://localhost:5173/api/hr/login", body,{
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-        // const data = await loginUser(loginForm);
+        if (response.data.status !== 200) {
+          setLoading(false);
+          return showErrorToast(response.data.message);
+        }
 
-        // if (data.status === 401) {
-        //   localStorage.setItem("loginKey", values.loginKey);
-        //   setLoading(false);
-        //   return setCheckVerification(true);
-        // }
+        showSuccessToast(response.data.message);
 
-        // if (data.status !== 200) {
-        //   setLoading(false);
-        //   return showErrorToast(data.data.message);
-        // }
-
-        // showSuccessToast(data.data.message);
-
-        // localStorage.setItem("token", data.data.token);
+        localStorage.setItem("hr", JSON.stringify(response.data.hr));
 
         // localStorage.setItem("user", JSON.stringify(data.data.user));
 
-        // values.loginKey = "";
-        // values.password = "";
+        values.loginKey = "";
+        values.password = "";
 
-        // setLoading(false);
+        setLoading(false);
 
         return navigate("/dashboard");
       } catch (error) {

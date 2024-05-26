@@ -3,10 +3,14 @@ import { Button } from "../../components/Button";
 import { Link } from 'react-router-dom';
 import { TableSimple } from "../../components/TableSimple.jsx";
 import SearchInput from "../../components/SearchInput";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,8 +26,14 @@ const Employee = () => {
     }
     fetchData();
   }, []);
-  return (
 
+  const navigate = useNavigate();
+
+  const goToEmployeeProfile = (id) => {
+    return navigate(`/employee/${id}`)
+  }
+
+  return (
     <Layout>
       <section className="border border-solid border-[#A2A1A833] rounded-[10px] p-5">
         <div className="flex items-center justify-between mb-6">
@@ -39,6 +49,72 @@ const Employee = () => {
             </Button>
           </div>
         </div>
+        {/* <Table
+          showActionName={true}
+          data={employees}
+          columns={[
+            {
+              header: "Employee Name",
+              view: (row) => (
+                <div onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
+                  <span>
+                    {row.firstName} {row.lastName}
+                  </span>
+                </div>
+              ),
+            },
+            {
+              header: "Employee ID",
+              view: (row) => (
+                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs capitalize">
+                  {row.profile[0]?.employeeId}
+                </span>
+              ),
+            },
+            {
+              header: "Department",
+              view: (row) => (
+                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
+                  {row.profile[0]?.department}
+                </span>
+              ),
+            },
+            {
+              header: "Designation",
+              view: (row) => (
+                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
+                  {row.profile[0]?.designation}
+                </span>
+              ),
+            },
+            {
+              header: "Type",
+              view: (row) => (
+                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
+                  {row.profile[0]?.employeeType}
+                </span>
+              ),
+            },
+            {
+              header: "Status",
+              view: (row) => (
+                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
+                  {row.profile[0]?.contractType}
+                </span>
+              ),
+            },
+          ]}
+          rowActions={
+            <div className="flex w-[30%] justify-between">
+              <div className="w-[50%] hover:cursor-pointer">
+                <CiEdit className="w-[100%]" />
+              </div>{" "}
+              <div className="hover:cursor-pointer">
+                <RiDeleteBin5Line className="w-[100%]" />
+              </div>
+            </div>
+          }
+        /> */}
         <TableSimple employeesData={employees}/>
       </section>
     </Layout>
