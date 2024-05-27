@@ -5,14 +5,8 @@ import Loader from "./Loader";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
-export function Table({
-  id = "",
-  columns,
-  showActionName = false,
-  noDivider = false,
-  ...props
-}) {
-  const data = props.data ?? [];
+export function Table({ id = "", columns, loading, tableData, empty, pagination, noDivider}) {
+  const data = tableData ?? [];
   const [isMobile, setIsMobile] = useState(false);
   const [state, setState] = useState();
 
@@ -25,71 +19,36 @@ export function Table({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+console.log(data)
   return (
     <div
       className={clsx([
         "page-scroll relative overflow-y-hidden bg-white font-lexend",
       ])}
     >
-      <div>
-        {/* header */}
-        {props.topSlot && (
-          <div className="px-7 pb-5 pt-5 font-semibold text-sm leading-[22px]">
-            {props.topSlot}
-          </div>
-        )}
-      </div>
-
       <div className="flex-1 overflow-hidden relative">
-        {props.loading && (
+        {loading && (
           <div className="absolute top-0 w-full  z-10 text-center">
             <Loader type="bar" />
           </div>
         )}
 
-        <div className="h-full w-full overflow-auto custom-scrollbar relative ">
-          {props.loading || data.length > 0 ? (
+        <div className="h-full w-full overflow-auto relative">
+          {data.length > 0 ? (
             <div>
               <table className="table table-auto w-full border-collapse ">
-                <thead
-                  className={`sticky top-0  ${
-                    props.hideTableHeader ? "hidden" : ""
-                  }`}
-                >
-                  <tr className="[&>th:nth-child(2)]:pl-0">
+                <thead className={`sticky top-0`}>
+                  <tr>
                     {columns.map((col) => {
-                      const view = data[0] && col.view(data[0], 0);
-                      const isAnObject =
-                        typeof view !== "string" &&
-                        typeof view !== "boolean" &&
-                        typeof view !== "number" &&
-                        view &&
-                        "desktop" in view;
-                      if (
-                        isMobile &&
-                        isAnObject &&
-                        view &&
-                        view?.mobile === false
-                      )
-                        return null;
                       return (
                         <th
                           key={`${col.header}-head`}
-                          className=" text-[10px] font-semibold uppercase text-left  py-3 whitespace-nowrap border-b  border-zp-line/30"
+                          className="text-[#A2A1A8] text-xs font-medium uppercase text-left px-6 py-3 whitespace-nowrap border-b  border-zp-line/30"
                         >
                           <span>{col.header}</span>
                         </th>
                       );
                     })}
-                    {props.rowActions && (
-                      <th
-                        className="text-grey-100 text-[10px] font-semibold text-right px-6 py-3 whitespace-nowrap border-b  border-zp-line/30
-                    "
-                      >
-                        {showActionName && "Action"}
-                      </th>
-                    )}
                   </tr>
                 </thead>
                 <tbody className="px-4 mt-5 ">
@@ -98,48 +57,25 @@ export function Table({
                       key={dataIndex}
                       className={clsx(
                         "px-5",
-                        "bg-white [&>td:nth-child(2)]:pl-0",
+                        "bg-white",
                         "text-[14px] font-normal hover:cursor-pointer transition-transform duration-100 hover:scale-105 hover:shadow-lg hover:ring-1 hover:ring-[#7152F3]",
                         noDivider
                           ? ""
                           : "border-b last:border-b-0 border-zp-line/30",
-                        props.clickRowAction &&
-                          "hover:bg-zp-primary-bg/60 cursor-pointer"
                       )}
                     >
                       {columns.map((col, colIndex) => {
                         const view = col.view(_data);
-                        const viewIsAnObject =
-                          typeof view !== "string" &&
-                          typeof view !== "boolean" &&
-                          typeof view !== "number" &&
-                          view &&
-                          "desktop" in view;
-                        if (isMobile && viewIsAnObject && view.mobile === false)
-                          return null;
                         return (
                           <td
                             className={clsx(
-                              "py-3 text-left min-h-[75px]",
-                              props.clickRowAction && "cursor-pointer"
+                              "py-3 px-6 text-left min-h-[75px] text-[#16151C]"
                             )}
-                            onClick={() => props?.clickRowAction?.()}
                           >
-                            {!viewIsAnObject
-                              ? view
-                              : isMobile && view.mobile
-                              ? view.mobile
-                              : view.desktop}
+                            {view}
                           </td>
                         );
                       })}
-                      {props.rowActions && (
-                        <td className="px-2 ">
-                          <div className="flex justify-end pr-6 pl-5">
-                            {props.rowActions}
-                          </div>
-                        </td>
-                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -147,19 +83,19 @@ export function Table({
             </div>
           ) : (
             <div className="page items-center justify-center my-10">
-              {props.empty ?? "No Records To Display"}
+              {empty ?? "No Records To Display"}
             </div>
           )}
         </div>
       </div>
 
       {/* footer */}
-      {props.pagination && (props.loading || data.length > 0) && (
+      {pagination && (loading || data.length > 0) && (
         <div className="border-t border-zp-line h-12">
           {/* pagination */}
           <Pagination
-            {...props.pagination}
-            isLoading={props.loading}
+            {...pagination}
+            isLoading={loading}
             currentLength={data.length}
           />
         </div>
