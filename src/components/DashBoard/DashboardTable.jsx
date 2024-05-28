@@ -10,7 +10,7 @@ export function DashboardTable({ employeesData }) {
       <>
         <tr
           onClick={() => navigate(`/employee/${employee.id}/`)}
-          className="odd:bg-white even:bg-gray-100 bg-blue-500 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-green-300"
+          className="odd:bg-white even:bg-gray-100 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{`${employee.firstName} ${employee.lastName}`}</td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
@@ -42,7 +42,7 @@ export function DashboardTable({ employeesData }) {
     <div className="flex flex-col mb-20">
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
-          <div className="overflow-hidden">
+          <div className="overflow-y-scroll h-[500px]">
             <table
               border={2}
               className="min-w-full divide-y divide-gray-200 border font-lexend"
@@ -95,7 +95,7 @@ export function DashboardTable({ employeesData }) {
                 </tr>
               </thead>
               {/*Employee Row Data */}
-              <tbody className="bg-green-600 ">{itemList}</tbody>
+              <tbody className="h-[50px]">{itemList}</tbody>
             </table>
           </div>
         </div>

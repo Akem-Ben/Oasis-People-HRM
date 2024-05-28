@@ -9,7 +9,7 @@ export function TableSimple({ employeesData }) {
       <>
         <tr
           onClick={() => navigate(`/employee/${employee.id}/`)}
-          className="odd:bg-white even:bg-gray-100 bg-blue-500 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-green-300"
+          className="odd:bg-white even:bg-gray-100 bg-blue-500 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{`${employee.firstName} ${employee.lastName}`}</td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
@@ -39,7 +39,7 @@ export function TableSimple({ employeesData }) {
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
-          <div className="overflow-hidden">
+          <div className="overflow-y-scroll h-[500px]">
             <table className="min-w-full divide-y divide-gray-200 font-lexend">
               <thead>
                 {/*Column Headers */}

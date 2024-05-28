@@ -34,7 +34,7 @@ export default function EmployeePage() {
                 {/* Employee Image */}
                 <div className="border border-gray-100 rounded-lg overflow-clip">
                   <img className="block mx-auto h-28 p-1 rounded-2xl sm:max-0 sm:shrink-0"
-                       src="https://i.ibb.co/PxHFLB3/passport-thumbsize.jpg" alt="John Doe"/>
+                       src={employeeData.image} alt="Jane Doe"/>
                 </div>
                 {/* Employee Email-Title */}
                 <div className="font-poppins *:pb-2">
