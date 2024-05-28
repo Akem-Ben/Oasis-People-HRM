@@ -817,6 +817,47 @@ export const allEmployees = {
   ],
 };
 
+export const allAttendance = {
+  attendance: [
+    {
+      id: 5,
+      userId: 1,
+      clockIn: "2024-05-16T13:34:22.731923+03:00",
+      clockOut: "2024-05-16T22:35:26.241943+03:00",
+      status: "On Time",
+      designation: "UI/UX Designer",
+      firstName: "Jane",
+      lastName: "Doe",
+      middleName: "Yusuf",
+      type: "Office",
+    },
+    {
+      id: 9,
+      userId: 1,
+      clockIn: "2024-05-17T12:34:22.731923+03:00",
+      clockOut: "2024-05-17T23:35:26.241943+03:00",
+      status: "Late",
+      designation: "UI/UX Designer",
+      firstName: "Naima",
+      lastName: "Alabi",
+      middleName: "Abbie",
+      type: "Remote",
+    },
+    {
+      id: 11,
+      userId: 1,
+      clockIn: "2024-05-18T08:34:22.731923+03:00",
+      clockOut: "2024-05-18T18:35:26.241943+03:00",
+      status: "On Time",
+      designation: "UI/UX Designer",
+      firstName: "Rahma",
+      lastName: "Said",
+      middleName: "Yusuf",
+      type: "Office",
+    },
+  ],
+};
+
 const hr = {
   firstName: "Raymond",
   lastName: "Downey",
@@ -840,9 +881,9 @@ export const handlers = [
   }),
   http.get("/api/user/attendance", () => {
     return HttpResponse.json({
-      count: 3,
+      count: allAttendance.attendance.length,
       createdAt: Date.now(),
-      results: [{}],
+      results: allAttendance,
     });
   }),
 
@@ -864,7 +905,7 @@ export const handlers = [
     }
   }),
 
-  http.get('/api/user/employees/:id', ({params}) => {
+  http.get("/api/user/employees/:id", ({ params }) => {
     const { id } = params;
     const userArray = allEmployees.results.filter((item) => item.id == id);
     if (userArray.length > 0) {
@@ -872,6 +913,5 @@ export const handlers = [
     } else {
       //
     }
-
-  })
-]
+  }),
+];
