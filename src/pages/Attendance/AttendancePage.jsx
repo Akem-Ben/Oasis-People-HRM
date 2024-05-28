@@ -3,6 +3,7 @@ import { Table } from "../../components/Table";
 import SearchInput from "../../components/SearchInput";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import Status from "../../components/Status";
 
 const Attendance = () => {
   const [attendance, setAttendance] = useState([]);
@@ -58,7 +59,7 @@ console.log(attendance,'attendance');
             },
             {
               header: "Status",
-              view: (row) => <span>{row.status}</span>,
+              view: (row) => <Status status={row.status}/>,
             },
           ]}
         />
