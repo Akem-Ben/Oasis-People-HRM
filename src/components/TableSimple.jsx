@@ -8,7 +8,7 @@ export function TableSimple({ employeesData }) {
     return (
       <>
         <tr
-          onClick={() => navigate(`/employee/${employee.id}/`)}
+          onClick={() => navigate(`/employee/${employee.employeeId}/`)}
           className="odd:bg-white even:bg-gray-100 bg-blue-500 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
           <td>

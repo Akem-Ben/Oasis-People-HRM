@@ -12,7 +12,7 @@ export default function TableActions({ employeeId }) {
       <Link to={`/edit-employee/${employeeId}/`} key={employeeId}>
         <RiEdit2Line className="hover:text-blue-800 hover:cursor-pointer" />
       </Link>
-      <RiDeleteBin5Line className='hover:text-blue-800 hover:cursor-pointer' />
+      {/* <RiDeleteBin5Line className='hover:text-blue-800 hover:cursor-pointer' /> */}
     </div>
   )
 }

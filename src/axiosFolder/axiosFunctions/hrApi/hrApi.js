@@ -77,3 +77,41 @@ export const registerUser = async (body) => {
       return error.response
     }
   }
+
+  export const fetchLeaveHistory = async() => {
+    try{
+      const response = await axios.get(`/admin/leave-histories`)
+      return response
+    }catch(error){
+      return error.response
+    }
+  }
+
+
+  export const fetchSingleEmployee = async(id) => {
+    try{
+      const response = await axios.get(`/admin/single-employee/${id}`)
+      return response
+    }catch(error){
+      return error.response
+    }
+  }
+
+
+  export const fetchAnEmployeeLeaveDetails = async(id) => {
+    try{
+      const response = await axios.get(`/admin/single-leave/${id}`)
+      return response
+    }catch(error){
+      return error.response
+    }
+  }
+
+  export const fetchAnEmployeeAttendanceHistory = async(id) => {
+    try{
+      const response = await axios.get(`/admin/employee-attendance-history/${id}`)
+      return response
+    }catch(error){
+      return error.response
+    }
+  }

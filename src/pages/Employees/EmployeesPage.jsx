@@ -36,6 +36,7 @@ const Employee = () => {
   }
 
   useEffect(()=>{
+    console.log(allEmployees)
     getAllEmployees()
 },[])
 

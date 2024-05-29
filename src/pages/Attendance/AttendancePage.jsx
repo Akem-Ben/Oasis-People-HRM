@@ -29,7 +29,7 @@ const Attendance = () => {
               header: "Employee Name",
               view: (row) => (
                 <div className="flex gap-x-3 items-center"> 
-                  <span className="inline-block w-9 h-9 rounded-full"><img src="/icons/oasis-logo.png" alt="" className="h-full w-full rounded-full " /></span>
+                  {/* <span className="inline-block w-9 h-9 rounded-full"><img src="/icons/oasis-logo.png" alt="" className="h-full w-full rounded-full " /></span> */}
                   <span>{row.employeeFirstName} {row.employeeLastName}</span>
                 </div>
               ),

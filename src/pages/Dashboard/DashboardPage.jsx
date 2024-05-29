@@ -14,7 +14,7 @@ function DashboardPage() {
 
   const {allEmployees, getAllEmployees} = useEmployee()
   const {getDailyAttendance, dailyAttendance} = useAttendance()
-
+  const {earlyGraph, lateGraph } = useAttendance()
 
   useEffect(()=>{
     getAllEmployees()
@@ -28,17 +28,17 @@ function DashboardPage() {
           title="Total Employees"
           data={allEmployees.length}
           figureImg={FaRegCalendarCheck}
-          percentage="12%"
+          percentage={`Early Attendance this week: ${earlyGraph.length}`}
           figBg="bg-[#EAF9F3]"
           figTxtCol="text-[#30BE82]"
-          date="January 5, 2024"
+          date={getCurrentDate()}
         />
         <DashboardCard
           titleImg={FaRegCalendarCheck}
           title="Total Attendance Today"
           data={dailyAttendance.length}
           figureImg={FaRegCalendarCheck}
-          percentage="8%"
+          percentage={`Late Attendance this week: ${lateGraph.length}`}
           figBg="bg-[#FEEFF0]"
           figTxtCol="text-[#F45B69]"
           date={getCurrentDate()}

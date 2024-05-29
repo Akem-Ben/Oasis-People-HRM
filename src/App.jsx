@@ -17,6 +17,15 @@ import EditEmployeePage from "./pages/Employee/EditEmployeePage.jsx";
 import { EmployeeProvider } from './contexts/HrEmployeeContext.jsx';
 import { AttendanceProvider } from './contexts/AttendanceContext.jsx';
 import AllTimeAttendance from "./pages/Attendance/AllTimeAttendancePage.jsx";
+import { LeaveProvider } from './contexts/LeaveContext.jsx';
+
+
+
+
+
+
+
+
 
 const routes = createBrowserRouter([
   {
@@ -42,11 +51,11 @@ const routes = createBrowserRouter([
         element: <AllTimeAttendance />
       },
       {
-        path: "employee/:id",
+        path: "/employee/:id",
         element: <EmployeePage />,
-        loader: async ({ params }) => {
-          return await fetch(`/api/user/employees/${params.id}`);
-        }
+        // loader: async ({ params }) => {
+        //   return await fetch(`/api/user/employees/${params.id}`);
+        // }
       },
       {
         path: "/add-employee",
@@ -60,7 +69,6 @@ const routes = createBrowserRouter([
         path: "/all-leave",
         element: <AllLeaves />,
       },
-
       {
         path: "/mock-api",
         element: <MockAPITest />
@@ -76,7 +84,9 @@ function App() {
     <ThemeContextProvider>
       <EmployeeProvider>
         <AttendanceProvider>
+          <LeaveProvider>
     <RouterProvider router={routes} />
+    </LeaveProvider>
     </AttendanceProvider>
     </EmployeeProvider>
     </ThemeContextProvider>
