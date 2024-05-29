@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { useEmployee } from "../../contexts/HrEmployeeContext.jsx";
 
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
+  const {allEmployees, getAllEmployees} = useEmployee()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +34,10 @@ const Employee = () => {
   const goToEmployeeProfile = (id) => {
     return navigate(`/employee/${id}`)
   }
+
+  useEffect(()=>{
+    getAllEmployees()
+},[])
 
   return (
     <Layout>
@@ -115,7 +121,7 @@ const Employee = () => {
             </div>
           }
         /> */}
-        <TableSimple employeesData={employees}/>
+        <TableSimple employeesData={allEmployees}/>
       </section>
     </Layout>
   );

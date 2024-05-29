@@ -8,19 +8,14 @@ import { getCurrentGreeting } from "../utilities/helpers";
 
 const NavBar = () => {
   const [searchItem, setSearchItem] = useState("");
+  
   const [profile, setProfile] = useState(false);
-  const [hr, setHr] = useState({});
+
+  const user = localStorage.getItem("user");
+
+  const mainUser = JSON.parse(user);
 
   const greeting = getCurrentGreeting();
-
-  useEffect(() => {
-    const currentHr = localStorage.getItem("hr");
-    if (currentHr) {
-      setHr(JSON.parse(currentHr));
-    } else {
-      setHr({});
-    }
-  }, []);
 
   return (
     <>
@@ -28,7 +23,7 @@ const NavBar = () => {
         <div className="flex justify-between sm:justify-around">
           <section className="w-[50%] md:w-[30%] h-[10%]">
             <div className="flex gap-2 font-lexend font-bold">
-              Hello {hr.firstName}{" "}
+              Hello {mainUser.firstName}{" "}
               <MdOutlineWavingHand className="mt-1 text-[#A86232]" />
             </div>
             <div className="text-sm font-thin">{greeting}</div>
@@ -55,9 +50,9 @@ const NavBar = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-lexend font-bold">
-                    {hr.firstName} {hr.lastName}
+                    {mainUser.firstName} {mainUser.lastName}
                   </span>{" "}
-                  <span className="text-sm font-thin">{hr.designation}</span>
+                  <span className="text-sm font-thin">{mainUser.designation}</span>
                 </div>
               </div>
               <div className="flex justify-center items-center hover:cursor-pointer">

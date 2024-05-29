@@ -5,32 +5,32 @@ import { allEmployees } from "../../mocks/handlers";
 export function DashboardTable({ employeesData }) {
   const navigate = useNavigate();
 
-  const itemList = allEmployees.results.map((employee) => {
+  const itemList = employeesData.map((employee) => {
     return (
       <>
         <tr
           onClick={() => navigate(`/employee/${employee.id}/`)}
           className="odd:bg-white even:bg-gray-100 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{`${employee.firstName} ${employee.lastName}`}</td>
+          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{`${employee.employeeFirstName} ${employee.employeeFirstName}`}</td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.profile[0].employeeId}
+            {employee.employeeWorkId}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.profile[0].department}
+            {employee.employeeDepartment}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.profile[0].designation}
+            {employee.employeeDesignation}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.profile[0].employeeType}
+            {employee.employeeWorkType}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.profile[0].contractType}
+            {employee.employeeContractType}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            <span className="bg-[#ECF9F3] rounded-lg p-2 text-[#3FC28A]">
-              On Time
+            <span className={`${employee.attendanceStatus === "on-time" ? 'bg-[#ECF9F3]' : 'bg-[#FEEFF0]'} rounded-lg p-2 ${employee.attendanceStatus === "on-time" ? 'text-[#3FC28A]' : 'text-[#F45B69]'}`}>
+              {employee.attendanceStatus}
             </span>
           </td>
         </tr>

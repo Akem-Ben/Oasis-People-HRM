@@ -12,12 +12,15 @@ import "react-toastify/dist/ReactToastify.css";
 import AttendancePage from "./pages/Attendance/AttendancePage.jsx";
 import EmployeePage from "./pages/Employee/EmployeePage.jsx";  
 import ErrorPage from "./pages/ErrorDefaultPage.jsx";
+import AllLeaves from "./pages/LeavePages/AllLeaves.jsx";
 import EditEmployeePage from "./pages/Employee/EditEmployeePage.jsx";
-
+import { EmployeeProvider } from './contexts/HrEmployeeContext.jsx';
+import { AttendanceProvider } from './contexts/AttendanceContext.jsx';
+import AllTimeAttendance from "./pages/Attendance/AllTimeAttendancePage.jsx";
 
 const routes = createBrowserRouter([
   {
-    path: '/signin', element: <Home/>
+    path: '/', element: <Home/>
   },
   {
     path: '/', element: <Root />, errorElement: <ErrorPage />,
@@ -35,6 +38,10 @@ const routes = createBrowserRouter([
         element: <AttendancePage />
       },
       {
+        path: '/alltimeattendance',
+        element: <AllTimeAttendance />
+      },
+      {
         path: "employee/:id",
         element: <EmployeePage />,
         loader: async ({ params }) => {
@@ -48,6 +55,10 @@ const routes = createBrowserRouter([
       {
         path: "/edit-employee/:id",
         element: <EditEmployeePage />,
+      },
+      {
+        path: "/all-leave",
+        element: <AllLeaves />,
       },
 
       {
@@ -63,7 +74,11 @@ function App() {
     <>
     <ToastContainer />
     <ThemeContextProvider>
+      <EmployeeProvider>
+        <AttendanceProvider>
     <RouterProvider router={routes} />
+    </AttendanceProvider>
+    </EmployeeProvider>
     </ThemeContextProvider>
     </>
   )

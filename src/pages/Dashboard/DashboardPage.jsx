@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from "../../components/SideBar";
 import NavBar from "../../components/Navbar";
 import DashboardCard from "../../components/DashBoard/Card";
@@ -7,16 +7,26 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import Chart from "../../components/DashBoard/Chart";
 import {DashboardTable} from "../../components/DashBoard/DashboardTable";
 import { getCurrentDate } from "../../utilities/helpers";
-import {allEmployees} from '../../mocks/handlers';
+import { useEmployee } from "../../contexts/HrEmployeeContext";
+import { useAttendance } from "../../contexts/AttendanceContext";
 
 function DashboardPage() {
+
+  const {allEmployees, getAllEmployees} = useEmployee()
+  const {getDailyAttendance, dailyAttendance} = useAttendance()
+
+
+  useEffect(()=>{
+    getAllEmployees()
+    getDailyAttendance()
+},[])
   return (
     <div className="pr-4">
       <section className="px-6 py-2 lg:ml-[290px] flex flex-wrap gap-10 md:ml-[290px] sm:ml-0">
         <DashboardCard
           titleImg={IoIosPeople}
           title="Total Employees"
-          data={allEmployees.results.length}
+          data={allEmployees.length}
           figureImg={FaRegCalendarCheck}
           percentage="12%"
           figBg="bg-[#EAF9F3]"
@@ -26,7 +36,7 @@ function DashboardPage() {
         <DashboardCard
           titleImg={FaRegCalendarCheck}
           title="Total Attendance Today"
-          data="470"
+          data={dailyAttendance.length}
           figureImg={FaRegCalendarCheck}
           percentage="8%"
           figBg="bg-[#FEEFF0]"
@@ -38,7 +48,7 @@ function DashboardPage() {
         <Chart />
       </section>
       <section className="lg:ml-[290px] px-6 py-2 flex md:ml-[290px] sm:ml-0">
-        <DashboardTable />
+        <DashboardTable employeesData={dailyAttendance}/>
       </section>
     </div>
   );

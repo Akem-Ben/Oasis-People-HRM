@@ -5,8 +5,8 @@ import * as Yup from "yup";
 import oasisLogo from "../../assets/homepage/oasis-logo.png";
 import { MdOutlineWavingHand } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import {showErrorToast, showSuccessToast} from '../../utilities/toastifySetup';
+import {loginHR} from '../../axiosFolder/axiosFunctions/hrApi/hrApi';
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -21,9 +21,7 @@ function Home() {
     initialValues: initialFormlikLoginValues,
     validationSchema: Yup.object({
       loginKey: Yup.string().required("Enter email or username"),
-      password: Yup.string()
-        .min(8, "Password should be 8 characters or more")
-        .required("Enter password"),
+      password: Yup.string().required("Enter password")
     }),
 
     onSubmit: async (values, setSubmitting) => {
@@ -31,33 +29,31 @@ function Home() {
         setLoading(true);
 
         const body = {
-          loginKey: values.loginKey,
+          email: values.loginKey,
           password: values.password,
         };
 
-        const response = await axios.post("http://localhost:5173/api/hr/login", body,{
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await loginHR(body);
 
-        if (response.data.status !== 200) {
+        if (response.status !== 200) {
           setLoading(false);
           return showErrorToast(response.data.message);
         }
 
         showSuccessToast(response.data.message);
 
-        localStorage.setItem("hr", JSON.stringify(response.data.hr));
+        const user = response.data.user;
 
-        // localStorage.setItem("user", JSON.stringify(data.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        localStorage.setItem("token", response.data.token);
 
         values.loginKey = "";
         values.password = "";
 
         setLoading(false);
 
-        return navigate("/dashboard");
+        return user.isManager ? navigate("/dashboard") : null;
       } catch (error) {
         console.log(error);
       } finally {
