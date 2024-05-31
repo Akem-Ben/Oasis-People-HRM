@@ -1,11 +1,19 @@
 import LeaveTableActions from "./LeaveTableActions";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLeave } from "../../contexts/LeaveContext";
 
 export function LeaveTable({ employeesData }) {
+
+  const { getLeaveHistory, getAllLeave } = useLeave()
+
   const [leaveReasonModal, setLeaveReasonModal] = useState(false);
   const [leaveDetails, setLeaveDetails] = useState('')
-  const itemList = employeesData.map((employee) => {
+
+  useEffect(()=>{
+    getAllLeave()
+  },[])
+  const itemList = getLeaveHistory.map((employee) => {
     return (
       <>
         <tr
