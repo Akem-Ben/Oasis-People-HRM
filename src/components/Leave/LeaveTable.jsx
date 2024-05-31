@@ -1,46 +1,44 @@
 import LeaveTableActions from "./LeaveTableActions";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
 
 export function LeaveTable({ employeesData }) {
-
+  const [leaveReasonModal, setLeaveReasonModal] = useState(false);
+  const [leaveDetails, setLeaveDetails] = useState('')
   const itemList = employeesData.map((employee) => {
     return (
       <>
         <tr
+        
           className="odd:bg-white even:bg-gray-100 bg-blue-500 transition-transform duration-200 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.dateRequested}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium items-center">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm font-medium items-center">
             {" "}
             {`${employee.employeeFirstName} ${employee.employeeLastName}`}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.employeeWorkId}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.employeeDepartment}
           </td>
-          {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.daysUsed}
-          </td> */}
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.daysLeft}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.startDate}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.endDate}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <td onClick={()=> {setLeaveReasonModal(true); setLeaveDetails(employee.reason)}} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {employee.totalRequestedDays}
           </td>
-          {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.status}
-          </td> */}
           <td className="px-2 py-4 whitespace-nowrap flex justify-between text-end text-sm font-medium">
-            {employee.status === 'pending' ? <LeaveTableActions /> : employee.status}
+            {employee.status === 'Pending' ? <LeaveTableActions leaveId={employee.leaveId}/> : employee.status}
           </td>
         </tr>
       </>
@@ -125,11 +123,16 @@ export function LeaveTable({ employeesData }) {
                 </tr>
               </thead>
               {/*Employee Row Data */}
-              <tbody className="bg-green-600 ">{itemList}</tbody>
+              <tbody className="bg-green-600 hover:cursor-pointer">{itemList}</tbody>
             </table>
           </div>
         </div>
       </div>
+      {leaveReasonModal && (
+          <Modal onClose={() => setLeaveReasonModal(false)}>
+            <div className="font-lexend bg-gray-400 rounded-lg py-10 p-2 w-full overflow-x-scroll flex flex-col justify-center items-center text-center">Reason: {leaveDetails}</div>
+          </Modal>
+        )}
     </div>
   );
 }

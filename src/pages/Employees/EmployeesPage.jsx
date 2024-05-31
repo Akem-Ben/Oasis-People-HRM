@@ -1,44 +1,17 @@
 import Layout from "../../components/Layout";
 import { Button } from "../../components/Button";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { TableSimple } from "../../components/TableSimple.jsx";
 import SearchInput from "../../components/SearchInput";
 import { useEffect, useState } from "react";
-import { CiEdit } from "react-icons/ci";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import { useEmployee } from "../../contexts/HrEmployeeContext.jsx";
 
 const Employee = () => {
-  const [employees, setEmployees] = useState([]);
-  const {allEmployees, getAllEmployees} = useEmployee()
+  const { allEmployees, getAllEmployees } = useEmployee();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/api/user/employees');
-        if (!res.ok) {
-          throw Error('Network response was not ok');
-        }
-        const employeesData = await res.json();
-        setEmployees(employeesData.results);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
+    getAllEmployees();
   }, []);
-
-  const navigate = useNavigate();
-
-  const goToEmployeeProfile = (id) => {
-    return navigate(`/employee/${id}`)
-  }
-
-  useEffect(()=>{
-    console.log(allEmployees)
-    getAllEmployees()
-},[])
 
   return (
     <Layout>
@@ -51,78 +24,20 @@ const Employee = () => {
             </Link>
             <Button
               icon={"sort-icon"}
-              className="!text-[#16151C] !bg-white !border !border-[#A2A1A833] rounded-[10px]">
+              className="!text-[#16151C] !bg-white !border !border-[#A2A1A833] rounded-[10px]"
+            >
               Filter
             </Button>
           </div>
         </div>
-        {/* <Table
-          showActionName={true}
-          data={employees}
-          columns={[
-            {
-              header: "Employee Name",
-              view: (row) => (
-                <div onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
-                  <span>
-                    {row.firstName} {row.lastName}
-                  </span>
-                </div>
-              ),
-            },
-            {
-              header: "Employee ID",
-              view: (row) => (
-                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs capitalize">
-                  {row.profile[0]?.employeeId}
-                </span>
-              ),
-            },
-            {
-              header: "Department",
-              view: (row) => (
-                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
-                  {row.profile[0]?.department}
-                </span>
-              ),
-            },
-            {
-              header: "Designation",
-              view: (row) => (
-                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
-                  {row.profile[0]?.designation}
-                </span>
-              ),
-            },
-            {
-              header: "Type",
-              view: (row) => (
-                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
-                  {row.profile[0]?.employeeType}
-                </span>
-              ),
-            },
-            {
-              header: "Status",
-              view: (row) => (
-                <span onClick={() => goToEmployeeProfile(row.id)} className="font-normal text-xs">
-                  {row.profile[0]?.contractType}
-                </span>
-              ),
-            },
-          ]}
-          rowActions={
-            <div className="flex w-[30%] justify-between">
-              <div className="w-[50%] hover:cursor-pointer">
-                <CiEdit className="w-[100%]" />
-              </div>{" "}
-              <div className="hover:cursor-pointer">
-                <RiDeleteBin5Line className="w-[100%]" />
-              </div>
-            </div>
-          }
-        /> */}
-        <TableSimple employeesData={allEmployees}/>
+        {allEmployees.length > 0 ? (
+          <TableSimple employeesData={allEmployees} />
+        ) : (
+          <div className="italic font-light p-3 text-red-900">
+            No data to display. You can add new employees by clicking the{" "}
+            <span className="font-bold">Add New Employee</span> button above
+          </div>
+        )}
       </section>
     </Layout>
   );

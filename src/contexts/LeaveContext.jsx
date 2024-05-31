@@ -12,26 +12,11 @@ export const useLeave = () => {
 }
 export const LeaveProvider = ({ children } ) => {
     const [getLeaveHistory, setGetLeaveHistory] = useState([])
-    // const [earlyGraph, setEarlyGraph] = useState([])
-    // const [lateGraph, setLateGraph] = useState([])
-    // const [allAttendanceHistory, setAllAttendanceHistory] = useState([])
 
     const getAllLeave = async () => {
         const data = await fetchLeaveHistory()
-        console.log(data)
        return setGetLeaveHistory(data.data.finalLeaveDetails)
     }
-    // const getAttendanceHistory = async () => {
-    //     const data = await fetchAttendanceHistory()
-    //     console.log(data)
-    //    return setAllAttendanceHistory(data.data.attendanceHistory)
-    // }
-
-    // const getGraphData = async () => {
-    //     const data = await graph()
-    //     setEarlyGraph(data.data.earlyComersArray)
-    //     return setLateGraph(data.data.lateComersArray)
-    // }
 
 
     return (

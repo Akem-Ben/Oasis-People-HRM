@@ -1,13 +1,10 @@
 import LeaveTableActions from "../Leave/LeaveTableActions";
 
 export function EmployeeAttendanceTable({ attendance }) {
-
   const itemList = attendance.map((attend) => {
     return (
       <>
-        <tr
-          className="odd:bg-white even:bg-gray-100 bg-blue-500 transition-transform duration-200 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
-        >
+        <tr className="odd:bg-white even:bg-gray-100 bg-blue-500 transition-transform duration-200 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50">
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
             {attend.date}
           </td>
@@ -70,7 +67,13 @@ export function EmployeeAttendanceTable({ attendance }) {
                 </tr>
               </thead>
               {/*Employee Row Data */}
-              <tbody className="bg-green-600 ">{itemList}</tbody>
+              {attendance.length > 0 ? (
+                <tbody className="bg-green-600 ">{itemList}</tbody>
+              ) : (
+                <div className="p-4 font-light italic text-red-800">
+                  Employee has not clocked in yet.
+                </div>
+              )}
             </table>
           </div>
         </div>

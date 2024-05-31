@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import EmployeeProfile from "../../components/EmployeeProfile/EmployeeProfile.jsx";
 import { SlBriefcase } from "react-icons/sl";
 import { HiOutlineEnvelope } from "react-icons/hi2";
@@ -9,16 +9,19 @@ import { IoMdPerson } from "react-icons/io";
 import { LuCalendarCheck } from "react-icons/lu";
 import { LiaClipboardCheckSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
-import { fetchSingleEmployee, fetchAnEmployeeAttendanceHistory, fetchAnEmployeeLeaveDetails } from '../../axiosFolder/axiosFunctions/hrApi/hrApi.js'
+import { fetchSingleEmployee, editAnEmployee, fetchAnEmployeeAttendanceHistory, deleteEmployee, fetchAnEmployeeLeaveDetails } from '../../axiosFolder/axiosFunctions/hrApi/hrApi.js'
 import { EmployeeAttendanceTable } from '../../components/EmployeeProfile/EmployeeAttendanceTable.jsx';
 import Modal from "../../components/Modal/Modal.jsx";
 import { EmployeeLeaveProfileTable } from "../../components/EmployeeProfile/LeaveProfile.jsx";
 import { MdDeleteForever } from "react-icons/md";
+import { showSuccessToast, showErrorToast } from "../../utilities/toastifySetup.js";
 
 
 
 export default function EmployeePage() {
   const [employee, setEmployee] = useState({})
+
+  const [editLoading, setEditLoading] = useState(false)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -31,6 +34,10 @@ export default function EmployeePage() {
   const [modalData, setModalData] = useState({})
 
   const [changeModalData, setChangeModalData] = useState({})
+
+  const [deleteLoading, setDeleteLoading] = useState(false)
+
+  const navigate = useNavigate()
 
   const showMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -75,8 +82,69 @@ export default function EmployeePage() {
   const editProfileChange = (e) => {
     const { name, value } = e.target;
     setChangeModalData({ ...changeModalData, [name]: value });
-    console.log(changeModalData)
   };
+
+  const updateEmployeeProfile = async (e) => {
+    try {
+      const body = {
+        firstName: changeModalData.firstName,
+        lastName: changeModalData.lastName,
+        phone: changeModalData.phone,
+        address: changeModalData.address,
+        employmentType: changeModalData.employmentType,
+        department: changeModalData.department,
+        contractType: changeModalData.contractType
+      }
+
+      setEditLoading(true)
+
+      const data = await editAnEmployee(body, id)
+
+      if (data.status !== 200) {
+        setEditLoading(false)
+        return showErrorToast(data.data.message)
+      }
+
+      getEmployeeDetails(id)
+      setEditLoading(false)
+
+      showSuccessToast(data.data.message)
+
+      return setShowModal(false)
+
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const deleteEmployeeProfile = async () => {
+    try {
+
+      setDeleteLoading(true)
+
+      const data = await deleteEmployee(id)
+
+      if (data.status !== 200) {
+        return showErrorToast(data.data.message)
+      }
+
+      showSuccessToast(data.data.message)
+
+      return navigate('/employees')
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const modalButtons = [
+    {
+      label: `${editLoading ? 'Loading' : 'Update'}`,
+      onClick: () => {updateEmployeeProfile()},
+      bg: "#7152F3", // Replace with your desired color
+      text: "#FFFFFF", // Replace with your desired color
+    },
+  ];
 
   useEffect(() => {
     getEmployeeDetails(id)
@@ -120,10 +188,10 @@ export default function EmployeePage() {
                     <span className="font-lexend text-white text-sm font-thin">Edit Profile</span>
                   </div>
                 </button>
-                <button className="bg-red-900 rounded-lg" onClick={() => setShowModal(true)}>
+                <button className="bg-red-900 rounded-lg" onClick={() => deleteEmployeeProfile()}>
                   <div className="py-2 px-3">
                     <MdDeleteForever className="inline-flex items-center mr-2 text-xl text-white" />
-                    <span className="font-lexend text-white text-sm font-thin">Delete Profile</span>
+                    <span className="font-lexend text-white text-sm font-thin">{ deleteLoading ? 'Loading...' : 'Delete Profile' }</span>
                   </div>
                 </button>
               </div>
@@ -189,12 +257,12 @@ export default function EmployeePage() {
           </div>
         </div>
         {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
+          <Modal onClose={() => setShowModal(false)} buttons={modalButtons}>
             <div className="font-lexend bg-gray-400 rounded-lg py-10 p-2 w-full overflow-x-scroll flex flex-col justify-center items-center text-center">
               <div className="flex justify-between items-center gap-4 w-full"><label>First Name:</label><input type="text" name="firstName" onChange={editProfileChange} value={setChangeModalData.firstName} placeholder={modalData.firstName} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
               <div className="flex justify-between items-center gap-4 w-full"><label>Last Name:</label><input type="text" name="lastName" onChange={editProfileChange} value={setChangeModalData.lastName} placeholder={modalData.lastName} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
               <div className="flex justify-between items-center gap-6 w-full"><label>Phone:</label><input type="number" name="phone" onChange={editProfileChange} value={setChangeModalData.phone} placeholder={modalData.phone} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
-              <div className="flex justify-between items-center gap-4 w-full"><label>Address:</label><input type="text" name="adress" onChange={editProfileChange} value={setChangeModalData.address} placeholder={modalData.homeAddress} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
+              <div className="flex justify-between items-center gap-4 w-full"><label>Address:</label><input type="text" name="address" onChange={editProfileChange} value={setChangeModalData.address} placeholder={modalData.homeAddress} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
               <div className="flex justify-between items-center gap-4 w-full"><label>Employee ID:</label><input type="text" name="employeeId" onChange={editProfileChange} disabled placeholder={modalData.employeeId} className="bg-blue-100 border w-[84%] p-3 mb-2 rounded-lg" /></div>
               <div className="flex justify-between items-center gap-4 w-full"><label>Office Type:</label><input type="text" name="employmentType" onChange={editProfileChange} value={setChangeModalData.employmentType} placeholder={modalData.employeeType} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>
               <div className="flex justify-between items-center gap-4 w-full"><label>Department:</label><input type="text" name="department" onChange={editProfileChange} value={setChangeModalData.department} placeholder={modalData.department} className="border w-[84%] p-3 mb-2 rounded-lg" /></div>

@@ -34,7 +34,7 @@ const SideBar = () => {
   const logout = () => {
     showSuccessToast(`Goodbye ${mainUser.firstName} ${mainUser.lastName}`)
     localStorage.clear();
-   return navigate("/signin")
+   return navigate("/")
   };
 
   // useEffect(() => {

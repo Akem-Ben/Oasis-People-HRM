@@ -14,6 +14,8 @@ export const AttendanceProvider = ({ children } ) => {
     const [dailyAttendance, setDailyAttendance] = useState([])
     const [earlyGraph, setEarlyGraph] = useState([])
     const [lateGraph, setLateGraph] = useState([])
+    const [late, setLate] = useState(0)
+    const [early, setEarly] = useState(0)
     const [allAttendanceHistory, setAllAttendanceHistory] = useState([])
 
     const getDailyAttendance = async () => {
@@ -23,19 +25,20 @@ export const AttendanceProvider = ({ children } ) => {
 
     const getAttendanceHistory = async () => {
         const data = await fetchAttendanceHistory()
-        console.log(data)
        return setAllAttendanceHistory(data.data.attendanceHistory)
     }
 
     const getGraphData = async () => {
         const data = await graph()
+        setEarly(data.data.earlyNum)
+        setLate(data.data.lateNum)
         setEarlyGraph(data.data.earlyComersArray)
         return setLateGraph(data.data.lateComersArray)
     }
 
 
     return (
-        <AttendanceContext.Provider value={{ getDailyAttendance, getAttendanceHistory, allAttendanceHistory, dailyAttendance, getGraphData, earlyGraph, lateGraph }}>
+        <AttendanceContext.Provider value={{ getDailyAttendance, late, early, getAttendanceHistory, allAttendanceHistory, dailyAttendance, getGraphData, earlyGraph, lateGraph }}>
             {children}
         </AttendanceContext.Provider>
     )

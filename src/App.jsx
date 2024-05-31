@@ -18,18 +18,17 @@ import { EmployeeProvider } from './contexts/HrEmployeeContext.jsx';
 import { AttendanceProvider } from './contexts/AttendanceContext.jsx';
 import AllTimeAttendance from "./pages/Attendance/AllTimeAttendancePage.jsx";
 import { LeaveProvider } from './contexts/LeaveContext.jsx';
-
-
-
-
-
-
+import EmployeeDashboardPage from './pages/Dashboard/EmployeeDashboard.jsx';
 
 
 
 const routes = createBrowserRouter([
   {
     path: '/', element: <Home/>
+  },
+  {
+    path: '/employee/dashboard',
+    element: <EmployeeDashboardPage />
   },
   {
     path: '/', element: <Root />, errorElement: <ErrorPage />,
@@ -41,6 +40,10 @@ const routes = createBrowserRouter([
       {
         path: '/employees',
         element: <EmployeesPage />
+      },
+      {
+        path: '/employee/dashboard',
+        element: <EmployeeDashboardPage />
       },
       {
         path: '/attendance',

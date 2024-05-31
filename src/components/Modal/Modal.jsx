@@ -2,17 +2,6 @@
 import React from 'react';
 import Button from './ModalButton';
 
-// interface ModalProps {
-//   onClose: () => void;
-//   children?: React.ReactNode;
-//   buttons?: {
-//     label: string;
-//     onClick: () => void;
-//     bg: string;
-//     text: string;
-//   }[];
-// }
-
 export const Modal = ({ onClose, children, buttons }) => {
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">

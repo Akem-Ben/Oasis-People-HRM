@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { viewAllEmployees } from '../axiosFolder/axiosFunctions/hrApi/hrApi';
+import React, { createContext, useContext, useState } from 'react';
+import { viewAllEmployees, fetchSingleEmployee } from '../axiosFolder/axiosFunctions/hrApi/hrApi';
 
 const EmployeeContext = createContext('');
 
@@ -18,17 +18,13 @@ export const EmployeeProvider = ({ children } ) => {
        return setAllEmployees(data.data.employeesToReturn)
     }
 
-    // const addEmployee = async(body) => {
-    //     const data = await createPost(post)
-    //     return data
-    // }
+    const getSingleEmployee = async(id) => {
+        const data = await fetchSingleEmployee(id)
+        return data
+    }
 
-    // const deleteUserPost = async(id) => {
-    //     const data = await deletePost(id)
-    //     return data
-    // }
     return (
-        <EmployeeContext.Provider value={{ allEmployees, setAllEmployees, getAllEmployees }}>
+        <EmployeeContext.Provider value={{ allEmployees, getSingleEmployee, setAllEmployees, getAllEmployees }}>
             {children}
         </EmployeeContext.Provider>
     )

@@ -53,7 +53,7 @@ function Home() {
 
         setLoading(false);
 
-        return user.isManager ? navigate("/dashboard") : null;
+        return user.isManager ? navigate("/dashboard") : navigate("/employee/dashboard");
       } catch (error) {
         console.log(error);
       } finally {
