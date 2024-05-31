@@ -5,7 +5,6 @@ const { apiHost } = config().secrets;
 
 const customAxios = axios.create({
     baseURL: `${apiHost}`,
-    // timeout: 30000,
 });
 
 const responseHandler = (response) => {
