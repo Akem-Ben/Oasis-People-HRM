@@ -84,9 +84,12 @@ function EmployeeDashboardPage() {
         return showErrorToast(data.data.message);
       }
 
+      fetchLeave()
+      fetchProfile()
       setLeaveLoading(false);
       setLeaveModal(false);
       setLeaveHistoryModal(true);
+
       setLeaveDetails({
         startDate: "",
         endDate: "",

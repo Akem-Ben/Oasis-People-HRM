@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
     path: '/', element: <Home/>
   },
   {
-    path: '/employee/dashboard',
+    path: '/employeeDashboard',
     element: <EmployeeDashboardPage />
   },
   {
@@ -40,10 +40,6 @@ const routes = createBrowserRouter([
       {
         path: '/employees',
         element: <EmployeesPage />
-      },
-      {
-        path: '/employee/dashboard',
-        element: <EmployeeDashboardPage />
       },
       {
         path: '/attendance',
