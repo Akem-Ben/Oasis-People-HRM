@@ -3,7 +3,7 @@ import { showErrorToast, showSuccessToast } from '../../utilities/toastifySetup'
 import {handleLeave} from '../../axiosFolder/axiosFunctions/hrApi/hrApi'
 
 
-export default function LeaveTableActions({ leaveId }) {
+export default function LeaveTableActions({ userId, leaveId }) {
 
   const [approveLoading, setApproveLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function LeaveTableActions({ leaveId }) {
 
       showSuccessToast(data.data.message);
 
-      return window.location.href = '/all-leave'
+      return navigate(`/employee/${userId}`)
 
     }catch(error){
       return error.response

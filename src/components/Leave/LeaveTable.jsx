@@ -38,7 +38,7 @@ export function LeaveTable({ employeesData }) {
             {employee.totalRequestedDays}
           </td>
           <td className="px-2 py-4 whitespace-nowrap flex justify-between text-end text-sm font-medium">
-            {employee.status === 'Pending' ? <LeaveTableActions leaveId={employee.leaveId}/> : employee.status}
+            {employee.status === 'Pending' ? <LeaveTableActions userId={employee.employeeId} leaveId={employee.leaveId}/> : employee.status}
           </td>
         </tr>
       </>

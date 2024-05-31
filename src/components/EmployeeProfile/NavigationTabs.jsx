@@ -47,7 +47,7 @@ function NavigationTabs({ employeeDetails }) {
 
       setImageLoader(false)
 
-      return window.location.href = `/employee/${id}`
+      return navigate(`/employees`)
     }
 
     setImageLoader(false)

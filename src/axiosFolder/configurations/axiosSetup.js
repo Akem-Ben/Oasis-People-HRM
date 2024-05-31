@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "./axiosLinkToBackend";
+import { useNavigate } from "react-router-dom";
 
 const { apiHost } = config().secrets;
 
@@ -7,10 +8,12 @@ const customAxios = axios.create({
     baseURL: `${apiHost}`,
 });
 
+const navigate = useNavigate()
+
 const responseHandler = (response) => {
     if (response?.status === 403) {
         localStorage.clear();
-        window.location.href = "/";
+        navigate("/");
     }
     return response;
 };
@@ -18,7 +21,7 @@ const responseHandler = (response) => {
 const errorHandler = (error) => {
     if (error.response?.status === 403) {
         localStorage.clear();
-        window.location.href = "/";
+        navigate("/");
     }
     return Promise.reject(error);
 };
