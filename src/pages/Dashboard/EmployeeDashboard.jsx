@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DashboardCard from "../../components/DashBoard/Card";
-import { IoIosPeople } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
-import Chart from "../../components/DashBoard/Chart";
-import { DashboardTable } from "../../components/DashBoard/DashboardTable";
 import { getCurrentDate } from "../../utilities/helpers";
-import { useEmployee } from "../../contexts/HrEmployeeContext";
-import { useAttendance } from "../../contexts/AttendanceContext";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import EmployeeSidebar from "../../components/EmployeeComponents/EmployeeSidebar";
 import Button from "../../components/Modal/ModalButton";
@@ -19,7 +13,7 @@ import {
 } from "../../utilities/toastifySetup";
 import { EmployeeDashboardTable } from '../../components/EmployeeComponents/EmployeeDashboardTable';
 import { EmployeeLeaveTable } from '../../components/EmployeeComponents/EmployeeLeaveTable'
-import { formatDate, formatTime } from '../../utilities/helpers';
+import { formatDate } from '../../utilities/helpers';
 
 
 
