@@ -109,11 +109,13 @@ function EmployeeDashboardPage() {
 
       if (data.status !== 200) {
         setClockInLoading(false);
+        setAttendanceModal(true)
         return showErrorToast(data.data.message);
       }
 
       setClockInLoading(false);
       fetchAttendance()
+      setAttendanceModal(true)
       return showSuccessToast(data.data.message);
     } catch (error) {
       console.log(error);
@@ -128,11 +130,13 @@ function EmployeeDashboardPage() {
 
       if (data.status !== 200) {
         setClockOutLoading(false);
+        setAttendanceModal(true)
         return showErrorToast(data.data.message);
       }
 
       setClockOutLoading(false);
       fetchAttendance()
+      setAttendanceModal(true)
       return showSuccessToast(data.data.message);
     } catch (error) {
       console.log(error);
