@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { showErrorToast, showSuccessToast } from '../../utilities/toastifySetup';
 import {handleLeave} from '../../axiosFolder/axiosFunctions/hrApi/hrApi'
-
+import { useLeave } from "../../contexts/LeaveContext";
 
 export default function LeaveTableActions({ userId, leaveId }) {
 
   const [approveLoading, setApproveLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
+
+  const { getAllLeave } = useLeave()
 
   const handleApprove = async (instruction) => {
     try {
@@ -26,7 +28,10 @@ export default function LeaveTableActions({ userId, leaveId }) {
 
       instruction === 'Approved' ? setApproveLoading(false) : setRejectLoading(false);
 
+      getAllLeave()
+      
       showSuccessToast(data.data.message);
+
 
       return navigate(`/employee/${userId}`)
 
@@ -35,6 +40,9 @@ export default function LeaveTableActions({ userId, leaveId }) {
     }
 
   }
+  useEffect(() => {
+    getAllLeave()
+  },[handleApprove])
   return (
     <div
       className="flex items-center justify-between gap-2 text-lg font-semibold border-transparent text-gray-800

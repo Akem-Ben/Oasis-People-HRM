@@ -25,6 +25,8 @@ export default function EmployeePage() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { id } = useParams();
+
   const [employeeLeave, setEmployeeLeave] = useState([])
 
   const [employeeAttendance, setEmployeeAttendance] = useState([])
@@ -41,15 +43,13 @@ export default function EmployeePage() {
 
   const showMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  }
+  };
   const [activeLink, setActiveLink] = useState(1);
+  const [tab, setTab] = useState("profile");
 
-  const handleChangeLink = (newActiveLink) => {
+  const handleChangeLink = (newActiveLink, tab) => {
     setActiveLink(newActiveLink);
   }
-
-
-  const { id } = useParams()
 
   const getEmployeeDetails = async (id) => {
     try {
@@ -202,16 +202,24 @@ export default function EmployeePage() {
           {/* Employee Element Links + Accompanying Element Details */}
           <div className="pt-0 md:flex md:justify-between md:items-start md:mt-5">
             {/* Employee Links Toggle Button for Mobile */}
-            <div className="md:hidden mx-3.5 border-gray-200 rounded-lg bg-[#7152f3] focus:border-blue-500
-            focus:ring-blue-500">
+            <div
+              className="md:hidden mx-3.5 border-gray-200 rounded-lg bg-[#7152f3] focus:border-blue-500
+            focus:ring-blue-500"
+            >
               <div className="flex justify-between items-center py-3 font-lexend text-white">
                 <span className="pl-4 text-sm">Profile</span>
                 <button onClick={showMenu}><MdKeyboardArrowDown className="text-xl" /></button>
               </div>
             </div>
             {/* Drop down Element Links Content Component */}
-            <div className={`border border-b-gray-300 rounded-lg mx-3.5 shadow-lg
-           ${isMenuOpen ? "transition-all ease-out duration-150" : "hidden md:block"}`}>
+            <div
+              className={`border border-b-gray-300 rounded-lg mx-3.5 shadow-lg
+           ${
+             isMenuOpen
+               ? "transition-all ease-out duration-150"
+               : "hidden md:block"
+           }`}
+            >
               <div className="*:pl-4 md:*:pr-20 *:font-lexend *:text-gray-800 *:py-3 cursor-pointer overflow-hidden">
                 <div role="button" onClick={() => handleChangeLink(1)}
                   className={`${activeLink === 1 ? 'bg-[#7152f3] *:text-white hover:bg-[#7152f3]' : ''}
@@ -272,5 +280,5 @@ export default function EmployeePage() {
         )}
       </div>
     </>
-  )
+  );
 }

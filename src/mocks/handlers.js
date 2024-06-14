@@ -64,6 +64,9 @@ export const allEmployees = {
           clockIn: "2024-05-16T13:34:22.731923+03:00",
           clockOut: "2024-05-16T22:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 9,
@@ -71,6 +74,9 @@ export const allEmployees = {
           clockIn: "2024-05-17T12:34:22.731923+03:00",
           clockOut: "2024-05-17T23:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 11,
@@ -78,6 +84,9 @@ export const allEmployees = {
           clockIn: "2024-05-18T08:34:22.731923+03:00",
           clockOut: "2024-05-18T18:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
       ],
       leave: [
@@ -143,6 +152,9 @@ export const allEmployees = {
           clockIn: "2024-05-16T13:34:22.731923+03:00",
           clockOut: "2024-05-16T22:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 6,
@@ -150,6 +162,9 @@ export const allEmployees = {
           clockIn: "2024-05-17T12:34:22.731923+03:00",
           clockOut: "2024-05-17T23:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 4,
@@ -157,6 +172,9 @@ export const allEmployees = {
           clockIn: "2024-05-18T08:34:22.731923+03:00",
           clockOut: "2024-05-18T18:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
       ],
       leave: [
@@ -232,6 +250,9 @@ export const allEmployees = {
           clockIn: "2024-05-16T13:34:22.731923+03:00",
           clockOut: "2024-05-16T22:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 9,
@@ -239,6 +260,9 @@ export const allEmployees = {
           clockIn: "2024-05-17T12:34:22.731923+03:00",
           clockOut: "2024-05-17T23:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
         {
           id: 11,
@@ -246,6 +270,9 @@ export const allEmployees = {
           clockIn: "2024-05-18T08:34:22.731923+03:00",
           clockOut: "2024-05-18T18:35:26.241943+03:00",
           status: "On Time",
+          date:"2024-05-16T22:35:26.241943+03:00",
+          break:"00:30 Min",
+          workingHours: "09:02 Hrs"
         },
       ],
       leave: [

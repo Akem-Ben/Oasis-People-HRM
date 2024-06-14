@@ -8,8 +8,8 @@ const config = () => {
             secrets: {
                 apiHost:
                     environment === "development"
-                        ? "https://oasis-people-hrm-backend.onrender.com"
-                        : "https://oasis-people-hrm-backend.onrender.com"
+                        ? "http://localhost:3000/"
+                        : "http://localhost:3000/"
             },
         });
     }
