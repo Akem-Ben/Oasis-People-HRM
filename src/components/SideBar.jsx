@@ -21,25 +21,26 @@ const SideBar = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
   const [active, setActive] = useState("");
   const { theme, toggleThemes } = useTheme();
-  const [user, setUser] = useState({});
   const navigate = useNavigate()
+
+  const user = localStorage.getItem("user");
+
+  const mainUser = JSON.parse(user);
 
   const handleTheme = () => {
     toggleThemes();
   };
 
   const logout = () => {
-    showSuccessToast(`Goodbye ${user.firstName} ${user.lastName}`)
+    showSuccessToast(`Goodbye ${mainUser.firstName} ${mainUser.lastName}`)
     localStorage.clear();
-    navigate("/signin")
-
-    // return (window.location.href = "/signin");
+   return navigate("/")
   };
 
-  useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("hr"));
-    setUser(loggedInUser);
-  },[])
+  // useEffect(() => {
+  //   const loggedInUser = JSON.parse(localStorage.getItem("hr"));
+  //   setUser(loggedInUser);
+  // },[])
 
   return (
     <>
@@ -115,7 +116,7 @@ const SideBar = () => {
                       </li>
                     </div>
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/departments"
                     style={({ isActive }) => {
                       isActive ? setActive("departments") : null;
@@ -136,7 +137,7 @@ const SideBar = () => {
                         Departments
                       </li>
                     </div>
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/attendance"
                     style={({ isActive }) => {
@@ -160,7 +161,7 @@ const SideBar = () => {
                     </div>
                   </NavLink>
                   <NavLink
-                    to="/leaves"
+                    to="/all-leave"
                     style={({ isActive }) => {
                       isActive ? setActive("leaves") : null;
                       return {
@@ -176,11 +177,11 @@ const SideBar = () => {
                         <div className="bg-[#7152F3] inline-block h-[50px] w-1 rounded-lg"></div>
                       )}
                       <li className="flex gap-4 text-l font-lexend hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]">
-                        <FcCalendar className="mt-[1px] text-xl" /> Leaves
+                        <FcCalendar className="mt-[1px] text-xl" /> Leaves Requests
                       </li>
                     </div>
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/notification"
                     className="block md:block lg:hidden sm:block"
                     style={({ isActive }) => {
@@ -201,7 +202,7 @@ const SideBar = () => {
                         <IoNotificationsOutline className="mt-[1px] text-xl" />Notification
                       </li>
                     </div>
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/profile"
                     className="block md:block lg:hidden sm:block"
@@ -230,7 +231,7 @@ const SideBar = () => {
                       </li>
                     </div>
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/settings"
                     style={({ isActive }) => {
                       isActive ? setActive("settings") : null;
@@ -251,7 +252,7 @@ const SideBar = () => {
                         Settings
                       </li>
                     </div>
-                  </NavLink>
+                  </NavLink> */}
                   <li
                     className="flex gap-4 text-l font-lexend font-thin hover:text-[#7152F3] hover:cursor-pointer w-full items-center p-[10px]"
                     onClick={() => logout()}

@@ -12,12 +12,22 @@ import "react-toastify/dist/ReactToastify.css";
 import AttendancePage from "./pages/Attendance/AttendancePage.jsx";
 import EmployeePage from "./pages/Employee/EmployeePage.jsx";
 import ErrorPage from "./pages/ErrorDefaultPage.jsx";
+import AllLeaves from "./pages/LeavePages/AllLeaves.jsx";
 import EditEmployeePage from "./pages/Employee/EditEmployeePage.jsx";
+import { EmployeeProvider } from './contexts/HrEmployeeContext.jsx';
+import { AttendanceProvider } from './contexts/AttendanceContext.jsx';
+import AllTimeAttendance from "./pages/Attendance/AllTimeAttendancePage.jsx";
+import { LeaveProvider } from './contexts/LeaveContext.jsx';
+import EmployeeDashboardPage from './pages/Dashboard/EmployeeDashboard.jsx';
+
 
 const routes = createBrowserRouter([
   {
-    path: "/signin",
-    element: <Home />,
+    path: '/', element: <Home/>
+  },
+  {
+    path: '/employeeDashboard',
+    element: <EmployeeDashboardPage />
   },
   {
     path: "/",
@@ -37,11 +47,15 @@ const routes = createBrowserRouter([
         element: <AttendancePage />,
       },
       {
-        path: "employee/:id",
+        path: '/alltimeattendance',
+        element: <AllTimeAttendance />
+      },
+      {
+        path: "/employee/:id",
         element: <EmployeePage />,
-        loader: async ({ params }) => {
-          return await fetch(`/api/user/employees/${params.id}`);
-        },
+        // loader: async ({ params }) => {
+        //   return await fetch(`/api/user/employees/${params.id}`);
+        // }
       },
       {
         path: "/add-employee",
@@ -51,7 +65,10 @@ const routes = createBrowserRouter([
         path: "/edit-employee/:id",
         element: <EditEmployeePage />,
       },
-
+      {
+        path: "/all-leave",
+        element: <AllLeaves />,
+      },
       {
         path: "/mock-api",
         element: <MockAPITest />,
@@ -63,10 +80,16 @@ const routes = createBrowserRouter([
 function App() {
   return (
     <>
-      <ToastContainer />
-      <ThemeContextProvider>
-        <RouterProvider router={routes} />
-      </ThemeContextProvider>
+    <ToastContainer />
+    <ThemeContextProvider>
+      <EmployeeProvider>
+        <AttendanceProvider>
+          <LeaveProvider>
+    <RouterProvider router={routes} />
+    </LeaveProvider>
+    </AttendanceProvider>
+    </EmployeeProvider>
+    </ThemeContextProvider>
     </>
   );
 }

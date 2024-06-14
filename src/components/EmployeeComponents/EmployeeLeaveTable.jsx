@@ -1,37 +1,30 @@
-// import TableActions from "./TableActions.jsx";
-import { useNavigate } from "react-router-dom";
-import { allEmployees } from "../../mocks/handlers";
+import {formatDate, formatTime} from '../../utilities/helpers';
 
-export function DashboardTable({ employeesData }) {
-  const navigate = useNavigate();
+export function EmployeeLeaveTable({ employeesData }) {
 
   const itemList = employeesData.map((employee) => {
     return (
       <>
         <tr
-          onClick={() => navigate(`/employee/${employee.employeeId}/`)}
           className="odd:bg-white even:bg-gray-100 hover:cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-[#7152F3] hover:ring-opacity-50"
         >
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{`${employee.employeeFirstName} ${employee.employeeFirstName}`}</td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.employeeWorkId}
+          {formatDate(employee.requestDate)}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.employeeDepartment}
+            {formatTime(employee.startDate)}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.employeeDesignation}
+            {formatTime(employee.endDate)}
+          </td>
+          <td className="px-6 py-4 whitespace-nowrap flex flex-wrap justify-center items-center text-sm text-gray-800">
+            {employee.reason}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.employeeWorkType}
+            {employee.totalDays}
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            {employee.employeeContractType}
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            <span className={`${employee.attendanceStatus === "on-time" ? 'bg-[#ECF9F3]' : 'bg-[#FEEFF0]'} rounded-lg p-2 ${employee.attendanceStatus === "on-time" ? 'text-[#3FC28A]' : 'text-[#F45B69]'}`}>
-              {employee.attendanceStatus}
-            </span>
+            {employee.status}
           </td>
         </tr>
       </>
@@ -42,7 +35,7 @@ export function DashboardTable({ employeesData }) {
     <div className="flex flex-col mb-20">
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
-          <div className="overflow-y-scroll h-[500px]">
+          <div className="overflow-y-scroll max:h-[400px]">
             <table
               border={2}
               className="min-w-full divide-y divide-gray-200 border font-lexend"
@@ -54,37 +47,31 @@ export function DashboardTable({ employeesData }) {
                     scope="col"
                     className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                   >
-                    Employee Name
+                    Request Date
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                   >
-                    Employee ID
+                    Start Date
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                   >
-                    Department
+                    End Date
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
                   >
-                    Designation
+                    Reason
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
                   >
-                    Type
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Check In Time
+                    Number of Days
                   </th>
                   <th
                     scope="col"
@@ -96,7 +83,7 @@ export function DashboardTable({ employeesData }) {
               </thead>
               {/*Employee Row Data */}
 
-             {employeesData.length ?  <tbody className="h-[50px]">{itemList}</tbody> : <div className="p-4 font-light italic text-red-800">No Employees have clocked in today yet.</div>}
+             {employeesData.length ?  <tbody className="h-[50px]">{itemList}</tbody> : <div className="p-4 font-light italic text-red-800">You have not clocked in yet.</div>}
             </table>
           </div>
         </div>
